@@ -63,9 +63,13 @@ function renderMacroResults() {
   const query = document.querySelector('#macro-search')?.value.toLowerCase() || '';
   const platform = document.querySelector('#platform-filter')?.value || 'all';
   const status = document.querySelector('#status-filter')?.value || 'all';
+  const category = document.querySelector('#category-filter')?.value || 'all';
+  const developer = document.querySelector('#developer-filter')?.value || 'all';
+  const feature = document.querySelector('#feature-filter')?.value || 'all';
+  const rating = Number(document.querySelector('#rating-filter')?.value || 0);
   const sort = document.querySelector('#sort-filter')?.value || 'recommended';
   const searchable = (macro) => [macro.name, macro.developer, macro.description, macro.status, ...macro.category, ...macro.platforms, ...macro.features].join(' ').toLowerCase();
-  const results = macros.filter((macro) => (!query || searchable(macro).includes(query)) && (platform === 'all' || macro.platforms.includes(platform)) && (status === 'all' || macro.status === status)).sort((a, b) => sort === 'rating' ? b.rating - a.rating : sort === 'rank' ? a.rank - b.rank : sort === 'alpha' ? a.name.localeCompare(b.name) : 0);
+  const results = macros.filter((macro) => (!query || searchable(macro).includes(query)) && (platform === 'all' || macro.platforms.includes(platform)) && (status === 'all' || macro.status === status) && (category === 'all' || macro.category.includes(category)) && (developer === 'all' || macro.developer === developer) && (feature === 'all' || macro.features.includes(feature)) && macro.rating >= rating).sort((a, b) => sort === 'rating' ? b.rating - a.rating : sort === 'rank' ? a.rank - b.rank : sort === 'alpha' ? a.name.localeCompare(b.name) : 0);
   document.querySelector('#macro-grid').innerHTML = results.length ? results.map(macroCard).join('') : '<div class="empty-results">No macro projects match those filters.</div>';
   document.querySelector('#macro-result-count').textContent = `${results.length} project${results.length === 1 ? '' : 's'}`;
   bindTiltCards();
@@ -84,6 +88,7 @@ function bindGlobalInteractions() {
     refreshIcons();
   });
 
+function bindTiltCards() {
   document.querySelectorAll('[data-tilt]').forEach((card) => {
     let frame;
     card.addEventListener('pointermove', (event) => {
@@ -106,9 +111,17 @@ function bindGlobalInteractions() {
       if (video) { video.pause(); video.currentTime = 0; }
     });
   });
+}
 
   document.querySelector('.search-trigger')?.addEventListener('click', () => document.querySelector('.search-bar input')?.focus());
-  ['macro-search', 'platform-filter', 'status-filter', 'sort-filter'].forEach((id) => document.querySelector(`#${id}`)?.addEventListener('input', renderMacroResults));
+  const filterControls = document.querySelector('.filter-controls');
+  if (filterControls && !document.querySelector('#category-filter')) {
+    const categories = [...new Set(macros.flatMap((macro) => macro.category))];
+    const developers = [...new Set(macros.map((macro) => macro.developer))];
+    const features = [...new Set(macros.flatMap((macro) => macro.features))].sort();
+    filterControls.insertAdjacentHTML('beforeend', `<label><span>Category</span><select id="category-filter"><option value="all">All categories</option>${categories.map((item) => `<option>${item}</option>`).join('')}</select></label><label><span>Developer</span><select id="developer-filter"><option value="all">All developers</option>${developers.map((item) => `<option>${item}</option>`).join('')}</select></label><label><span>Feature</span><select id="feature-filter"><option value="all">All features</option>${features.map((item) => `<option>${item}</option>`).join('')}</select></label><label><span>Min rating</span><select id="rating-filter"><option value="0">Any rating</option><option value="4">4.0+</option><option value="4.5">4.5+</option><option value="5">5.0</option></select></label>`);
+  }
+  ['macro-search', 'platform-filter', 'status-filter', 'category-filter', 'developer-filter', 'feature-filter', 'rating-filter', 'sort-filter'].forEach((id) => document.querySelector(`#${id}`)?.addEventListener('input', renderMacroResults));
   document.querySelectorAll('.gallery-item').forEach((item) => item.addEventListener('click', () => {
     const image = item.querySelector('img');
     const lightbox = document.createElement('dialog');
