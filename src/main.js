@@ -11,6 +11,7 @@ function shell(content) {
   const activePath = path.startsWith('/macros') ? '/macros' : path === '/explore' ? '/explore' : path === '/about' ? '/about' : '/';
   app.innerHTML = `${header(activePath)}<main>${content}</main>${footer()}`;
   bindGlobalInteractions();
+  bindTiltCards();
   refreshIcons();
 }
 
@@ -86,11 +87,20 @@ function bindTiltCards() {
       const x = (event.clientX - rect.left) / rect.width;
       const y = (event.clientY - rect.top) / rect.height;
       cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => { card.style.setProperty('--rotate-x', `${(0.5 - y) * 6}deg`); card.style.setProperty('--rotate-y', `${(x - 0.5) * 6}deg`); card.style.setProperty('--glow-x', `${x * 100}%`); card.style.setProperty('--glow-y', `${y * 100}%`); });
+      frame = requestAnimationFrame(() => {
+        card.style.setProperty('--rotate-x', `${(0.5 - y) * 6}deg`);
+        card.style.setProperty('--rotate-y', `${(x - 0.5) * 6}deg`);
+        card.style.setProperty('--cover-rotate-x', `${(0.5 - y) * 4}deg`);
+        card.style.setProperty('--cover-rotate-y', `${(x - 0.5) * 4}deg`);
+        card.style.setProperty('--cover-shift-x', `${(x - 0.5) * 8}px`);
+        card.style.setProperty('--cover-shift-y', `${(y - 0.5) * 8}px`);
+        card.style.setProperty('--glow-x', `${x * 100}%`);
+        card.style.setProperty('--glow-y', `${y * 100}%`);
+      });
       const video = card.querySelector('video');
       if (video) video.play().catch(() => {});
     });
-    card.addEventListener('pointerleave', () => { cancelAnimationFrame(frame); card.style.setProperty('--rotate-x', '0deg'); card.style.setProperty('--rotate-y', '0deg'); card.style.setProperty('--glow-x', '50%'); card.style.setProperty('--glow-y', '50%'); const video = card.querySelector('video'); if (video) { video.pause(); video.currentTime = 0; } });
+    card.addEventListener('pointerleave', () => { cancelAnimationFrame(frame); card.style.setProperty('--rotate-x', '0deg'); card.style.setProperty('--rotate-y', '0deg'); card.style.setProperty('--cover-rotate-x', '0deg'); card.style.setProperty('--cover-rotate-y', '0deg'); card.style.setProperty('--cover-shift-x', '0px'); card.style.setProperty('--cover-shift-y', '0px'); card.style.setProperty('--glow-x', '50%'); card.style.setProperty('--glow-y', '50%'); const video = card.querySelector('video'); if (video) { video.pause(); video.currentTime = 0; } });
   });
 }
 
@@ -105,10 +115,6 @@ function bindGlobalInteractions() {
     mobileMenu.setAttribute('aria-hidden', String(open));
     refreshIcons();
   });
-
-function bindTiltCards() {
-  bindTiltCards();
-}
 
   document.querySelector('.search-trigger')?.addEventListener('click', () => document.querySelector('.search-bar input')?.focus());
   const filterControls = document.querySelector('.filter-controls');
