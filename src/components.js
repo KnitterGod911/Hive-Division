@@ -62,11 +62,9 @@ export function categoryCard(category, index) {
 
 function mediaMarkup(macro, compact = false) {
   const fallback = `<span class="media-placeholder"><span>${icon('hexagon', compact ? 25 : 38)}</span><b>MEDIA COMING SOON</b><small>Add cover media in public/images/macros/${macro.slug}/</small></span>`;
-  const hoverMedia = macro.hoverPreview?.type === 'video' ? macro.hoverPreview : macro.demoMedia?.find((item) => item.type === 'video' || item.type === 'gif');
   const image = macro.coverImage ? `<img class="macro-cover-image" src="${macro.coverImage}" alt="${macro.name} cover" loading="lazy" />` : fallback;
-  const video = hoverMedia?.type === 'video' && hoverMedia.sourceUrl ? `<iframe class="macro-cover-hover-video" data-preview-src="${youtubeEmbedUrl(hoverMedia.sourceUrl, true)}" title="${macro.name} working demo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>` : hoverMedia?.type === 'video' ? `<video class="macro-cover-hover-video" src="${hoverMedia.src}" muted loop playsinline preload="none"></video>` : hoverMedia?.type === 'gif' ? `<img class="macro-cover-hover-video" src="${hoverMedia.src}" alt="${macro.name} working demo" loading="lazy" />` : macro.coverVideo ? `<video class="macro-cover-hover-video" src="${macro.coverVideo}" muted loop playsinline preload="none"></video>` : '';
-  const mediaType = hoverMedia || macro.coverVideo ? `${icon('video', 13)} Hover for live footage` : macro.coverImage ? `${icon('image', 13)} Static cover` : `${icon('hexagon', 13)} Media slot`;
-  return `<div class="macro-media">${image}${video}<span class="media-type">${mediaType}</span></div>`;
+  const mediaType = macro.coverImage ? `${icon('image', 13)} Static cover` : `${icon('hexagon', 13)} Media slot`;
+  return `<div class="macro-media">${image}<span class="media-type">${mediaType}</span></div>`;
 }
 
 function youtubeEmbedUrl(sourceUrl, autoplay = false) {
