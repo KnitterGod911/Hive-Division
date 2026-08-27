@@ -76,18 +76,6 @@ function renderMacroResults() {
   refreshIcons();
 }
 
-function bindGlobalInteractions() {
-  const menuButton = document.querySelector('.menu-trigger');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  menuButton?.addEventListener('click', () => {
-    const open = menuButton.getAttribute('aria-expanded') === 'true';
-    menuButton.setAttribute('aria-expanded', String(!open));
-    menuButton.innerHTML = icon(open ? 'menu' : 'x', 20);
-    mobileMenu.classList.toggle('is-open', !open);
-    mobileMenu.setAttribute('aria-hidden', String(open));
-    refreshIcons();
-  });
-
 function bindTiltCards() {
   document.querySelectorAll('[data-tilt]').forEach((card) => {
     let frame;
@@ -101,16 +89,24 @@ function bindTiltCards() {
       const video = card.querySelector('video');
       if (video) video.play().catch(() => {});
     });
-    card.addEventListener('pointerleave', () => {
-      cancelAnimationFrame(frame);
-      card.style.setProperty('--rotate-x', '0deg');
-      card.style.setProperty('--rotate-y', '0deg');
-      card.style.setProperty('--glow-x', '50%');
-      card.style.setProperty('--glow-y', '50%');
-      const video = card.querySelector('video');
-      if (video) { video.pause(); video.currentTime = 0; }
-    });
+    card.addEventListener('pointerleave', () => { cancelAnimationFrame(frame); card.style.setProperty('--rotate-x', '0deg'); card.style.setProperty('--rotate-y', '0deg'); card.style.setProperty('--glow-x', '50%'); card.style.setProperty('--glow-y', '50%'); const video = card.querySelector('video'); if (video) { video.pause(); video.currentTime = 0; } });
   });
+}
+
+function bindGlobalInteractions() {
+  const menuButton = document.querySelector('.menu-trigger');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  menuButton?.addEventListener('click', () => {
+    const open = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', String(!open));
+    menuButton.innerHTML = icon(open ? 'menu' : 'x', 20);
+    mobileMenu.classList.toggle('is-open', !open);
+    mobileMenu.setAttribute('aria-hidden', String(open));
+    refreshIcons();
+  });
+
+function bindTiltCards() {
+  bindTiltCards();
 }
 
   document.querySelector('.search-trigger')?.addEventListener('click', () => document.querySelector('.search-bar input')?.focus());
