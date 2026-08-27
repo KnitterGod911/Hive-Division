@@ -62,9 +62,11 @@ export function categoryCard(category, index) {
 
 function mediaMarkup(macro, compact = false) {
   const fallback = `<span class="media-placeholder"><span>${icon('hexagon', compact ? 25 : 38)}</span><b>MEDIA COMING SOON</b><small>Add cover media in public/images/macros/${macro.slug}/</small></span>`;
-  const media = macro.coverVideo ? `<video class="macro-cover-video" src="${macro.coverVideo}" muted loop playsinline preload="none"></video>` : macro.coverGif ? `<img class="macro-cover-gif" src="${macro.coverGif}" alt="${macro.name} animated cover" loading="lazy" />` : macro.coverImage ? `<img class="macro-cover-image" src="${macro.coverImage}" alt="${macro.name} cover" loading="lazy" />` : fallback;
-  const mediaType = macro.coverVideo ? `${icon('video', 13)} Video cover` : macro.coverGif ? `${icon('play', 13)} GIF cover` : macro.coverImage ? `${icon('image', 13)} Static cover` : `${icon('hexagon', 13)} Media slot`;
-  return `<div class="macro-media">${media}<span class="media-type">${mediaType}</span></div>`;
+  const hoverMedia = macro.demoMedia?.find((item) => item.type === 'video' || item.type === 'gif');
+  const image = macro.coverGif ? `<img class="macro-cover-image" src="${macro.coverGif}" alt="${macro.name} animated cover" loading="lazy" />` : macro.coverImage ? `<img class="macro-cover-image" src="${macro.coverImage}" alt="${macro.name} cover" loading="lazy" />` : fallback;
+  const video = hoverMedia?.type === 'video' ? `<video class="macro-cover-hover-video" src="${hoverMedia.src}" muted loop playsinline preload="none"></video>` : hoverMedia?.type === 'gif' ? `<img class="macro-cover-hover-video" src="${hoverMedia.src}" alt="${macro.name} working demo" loading="lazy" />` : macro.coverVideo ? `<video class="macro-cover-hover-video" src="${macro.coverVideo}" muted loop playsinline preload="none"></video>` : '';
+  const mediaType = hoverMedia || macro.coverVideo ? `${icon('video', 13)} Hover for live footage` : macro.coverGif ? `${icon('play', 13)} GIF cover` : macro.coverImage ? `${icon('image', 13)} Static cover` : `${icon('hexagon', 13)} Media slot`;
+  return `<div class="macro-media">${image}${video}<span class="media-type">${mediaType}</span></div>`;
 }
 
 export function macroCard(macro) {

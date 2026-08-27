@@ -84,6 +84,9 @@ h1 span, h2 em { color: var(--gold); font-style: normal; }
 }
 
 .detail-overview-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .72fr); gap: 55px; align-items: start; }
+.macro-cover-hover-video { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; display: block; object-fit: cover; opacity: 0; transition: opacity .25s ease; }
+.macro-card.is-playing-demo .macro-cover-hover-video { opacity: 1; }
+.macro-card.is-playing-demo .macro-media::after { z-index: 2; }
 .detail-overview-grid .detail-section { min-width: 0; }
 .detail-demo-section { padding-top: 53px; }
 .detail-demo { perspective: 900px; }
