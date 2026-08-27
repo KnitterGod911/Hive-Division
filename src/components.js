@@ -1,7 +1,7 @@
-import { createIcons, ArrowUpRight, Search, Menu, X, Hexagon, Command, Sparkles, ShieldCheck, Bot, BookOpen, TrendingUp, Package, ScrollText, Map, Wrench } from 'lucide';
+import { createIcons, ArrowUpRight, Search, Menu, X, Hexagon, Command, Sparkles, ShieldCheck, Bot, BookOpen, TrendingUp, Package, ScrollText, Map, Wrench, Filter, SlidersHorizontal, Star, ExternalLink, Play, Image, Video, Github, Download, CircleAlert, Check, ChevronDown } from 'lucide';
 import { footerLinks } from './data.js';
 
-const iconSet = { ArrowUpRight, Search, Menu, X, Hexagon, Command, Sparkles, ShieldCheck, Bot, BookOpen, TrendingUp, Package, ScrollText, Map, Wrench };
+const iconSet = { ArrowUpRight, Search, Menu, X, Hexagon, Command, Sparkles, ShieldCheck, Bot, BookOpen, TrendingUp, Package, ScrollText, Map, Wrench, Filter, SlidersHorizontal, Star, ExternalLink, Play, Image, Video, Github, Download, CircleAlert, Check, ChevronDown };
 
 export function icon(name, size = 18) {
   return `<i data-lucide="${name}" width="${size}" height="${size}" aria-hidden="true"></i>`;
@@ -48,7 +48,7 @@ export function button(label, href, variant = 'primary', iconName = 'arrow-up-ri
 }
 
 export function categoryCard(category, index) {
-  return `<a class="category-card tilt-card" href="/explore#${category.name.toLowerCase()}" style="--delay: ${index * 55}ms" data-tilt>
+  return `<a class="category-card tilt-card" href="${category.href || `/explore#${category.name.toLowerCase()}`}" style="--delay: ${index * 55}ms" data-tilt>
     <span class="card-glow"></span>
     <span class="category-icon">${icon(category.icon, 22)}</span>
     <span class="card-content">
@@ -59,6 +59,26 @@ export function categoryCard(category, index) {
     <span class="card-arrow">${icon('arrow-up-right', 18)}</span>
   </a>`;
 }
+
+function mediaMarkup(macro, compact = false) {
+  const fallback = `<span class="media-placeholder"><span>${icon('hexagon', compact ? 25 : 38)}</span><b>MEDIA COMING SOON</b><small>Add cover media in public/images/macros/${macro.slug}/</small></span>`;
+  const media = macro.coverVideo ? `<video class="macro-cover-video" src="${macro.coverVideo}" muted loop playsinline preload="none"></video>` : macro.coverGif ? `<img class="macro-cover-gif" src="${macro.coverGif}" alt="${macro.name} animated cover" loading="lazy" />` : macro.coverImage ? `<img class="macro-cover-image" src="${macro.coverImage}" alt="${macro.name} cover" loading="lazy" />` : fallback;
+  const mediaType = macro.coverVideo ? `${icon('video', 13)} Video cover` : macro.coverGif ? `${icon('play', 13)} GIF cover` : macro.coverImage ? `${icon('image', 13)} Static cover` : `${icon('hexagon', 13)} Media slot`;
+  return `<div class="macro-media">${media}<span class="media-type">${mediaType}</span></div>`;
+}
+
+export function macroCard(macro) {
+  return `<article class="macro-card tilt-card" data-tilt data-macro="${macro.slug}">
+    <a href="/macros/${macro.slug}" class="macro-card-link" aria-label="View ${macro.name}">
+      <div class="macro-card-top"><span class="rank-badge">#${macro.rank}</span><span class="status-badge ${macro.status === 'Unmaintained' ? 'is-muted' : ''}"><i></i>${macro.status}</span></div>
+      ${mediaMarkup(macro, true)}
+      <div class="macro-card-info"><div class="macro-title-row"><div><h3>${macro.name}</h3><p>${macro.developer}</p></div><span class="macro-rating">${icon('star', 14)} ${macro.rating.toFixed(1)}</span></div><p class="macro-description">${macro.description}</p><div class="macro-tags">${macro.features.slice(0, 3).map((feature) => `<span>${feature}</span>`).join('')}</div></div>
+      <span class="macro-card-footer">View macro ${icon('arrow-up-right', 16)}</span>
+    </a>
+  </article>`;
+}
+
+export { mediaMarkup };
 
 export function footer() {
   return `<footer class="site-footer">

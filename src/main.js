@@ -1,12 +1,13 @@
 import { categories } from './data.js';
-import { header, footer, refreshIcons, searchBar, button, categoryCard, icon } from './components.js';
+import { macros } from './macros.js';
+import { header, footer, refreshIcons, searchBar, button, categoryCard, icon, macroCard, mediaMarkup } from './components.js';
 import './styles.css';
 
 const app = document.querySelector('#app');
 const path = window.location.pathname.replace(/\/$/, '') || '/';
 
 function shell(content) {
-  const activePath = path === '/explore' ? '/explore' : path === '/about' ? '/about' : '/';
+  const activePath = path.startsWith('/macros') ? '/macros' : path === '/explore' ? '/explore' : path === '/about' ? '/about' : '/';
   app.innerHTML = `${header(activePath)}<main>${content}</main>${footer()}`;
   bindGlobalInteractions();
   refreshIcons();
@@ -20,7 +21,7 @@ function homePage() {
       <p class="hero-lede">The ultimate Bee Swarm Simulator resource hub.</p>
       <p class="hero-description">Discover guides, resources, tools, macros, progression information, and everything you need to navigate Bee Swarm Simulator.</p>
       ${searchBar()}
-      <div class="hero-actions">${button('Explore', '/explore')} ${button('Browse resources', '/explore', 'secondary', 'command')}</div>
+      <div class="hero-actions">${button('Explore', '/explore')} ${button('Browse macros', '/macros', 'secondary', 'bot')}</div>
       <div class="hero-meta"><span>${icon('shield-check', 15)} Community-built knowledge</span><span class="meta-divider"></span><span>Foundation / 01</span></div>
     </div>
     <div class="hero-art" aria-hidden="true"><div class="honey-orbit orbit-one"></div><div class="honey-orbit orbit-two"></div><div class="hive-core"><span class="core-ring"></span><span class="core-mark">${icon('hexagon', 88)}</span></div><span class="art-label label-one">01 / KNOWLEDGE</span><span class="art-label label-two">HIVE SYSTEMS</span></div>
@@ -43,6 +44,34 @@ function aboutPage() {
   <section class="about-content page-wrap section-space"><div class="about-panel"><span class="about-symbol">${icon('hexagon', 44)}</span><div><span class="eyebrow">Why Hive Division</span><h2>Less noise.<br /><em>More direction.</em></h2><p>Hive Division is being built to organize useful information and resources into one place. The goal is a polished, practical companion that makes the journey through Bee Swarm Simulator easier to understand and more enjoyable.</p><p class="disclaimer">Hive Division is an independent community project and is not affiliated with Roblox or Bee Swarm Simulator.</p></div></div></section>`;
 }
 
+function macroDirectory() {
+  const platforms = [...new Set(macros.flatMap((macro) => macro.platforms))];
+  const statuses = [...new Set(macros.map((macro) => macro.status))];
+  return `<section class="subpage-hero macro-directory-hero page-wrap"><div><span class="eyebrow">Directory / Macro systems</span><h1>Bee Swarm<br /><span>Simulator macros.</span></h1><p>Explore, compare, and learn about Bee Swarm Simulator macro projects.</p></div><div class="directory-count"><strong>${macros.length.toString().padStart(2, '0')}</strong><span>verified<br />projects</span></div></section><section class="macro-directory page-wrap section-space"><div class="trust-notice">${icon('shield-check', 16)} <span>Hive Division does not develop or audit third-party macros. Always verify downloads and links through the project's official sources.</span></div><div class="macro-toolbar"><label class="macro-search">${icon('search', 17)}<input id="macro-search" type="search" placeholder="Search macros…" aria-label="Search macros" /></label><div class="filter-controls"><label><span>Platform</span><select id="platform-filter"><option value="all">All platforms</option>${platforms.map((item) => `<option>${item}</option>`).join('')}</select></label><label><span>Status</span><select id="status-filter"><option value="all">All statuses</option>${statuses.map((item) => `<option>${item}</option>`).join('')}</select></label><label><span>Sort</span><select id="sort-filter"><option value="recommended">Recommended</option><option value="rating">Highest rated</option><option value="rank">Highest ranked</option><option value="alpha">Alphabetical</option></select></label></div></div><div class="macro-results-meta"><span id="macro-result-count">${macros.length} projects</span><span>Editorial rankings based on publicly available information and community feedback.</span></div><div class="macro-grid" id="macro-grid">${macros.map(macroCard).join('')}</div><div class="ranking-note">Hive Division rankings are editorial assessments based on publicly available information and community feedback and may change as projects are updated.</div></section>`;
+}
+
+function detailList(title, items) {
+  return items?.length ? `<section class="detail-section"><div class="detail-label">${title}</div><div class="detail-list">${items.map((item) => `<div>${icon('check', 15)} ${item}</div>`).join('')}</div></section>` : '';
+}
+
+function macroDetail(macro) {
+  const github = macro.links.find((link) => link.type === 'github-repository');
+  return `<section class="macro-detail-hero page-wrap"><a class="back-link" href="/macros">${icon('arrow-up-right', 15)} Back to macro directory</a><div class="detail-hero-grid"><div class="detail-cover-wrap">${mediaMarkup(macro)}</div><div class="detail-identity"><div class="detail-rank">#${macro.rank} / HIVE DIVISION RANKING</div><h1>${macro.name}</h1><p class="detail-developer">by ${macro.developer}</p><div class="detail-rating"><span>${icon('star', 19)} ${macro.rating.toFixed(1)} / 5.0</span><small>Hive Division editorial rating</small></div><div class="detail-chips"><span>${macro.status}</span>${macro.platforms.map((item) => `<span>${item}</span>`).join('')}</div><div class="macro-tags detail-tags">${macro.features.map((feature) => `<span>${feature}</span>`).join('')}</div><div class="detail-actions">${macro.downloads[0] ? button('Download', macro.downloads[0].url, 'primary', 'download') : ''}${github ? button('GitHub', github.url, 'secondary', 'github') : ''}</div></div></div></section><section class="detail-content page-wrap"><div class="trust-notice">${icon('shield-check', 16)} <span>Verify every download through the project's official sources. Hive Division does not develop or audit third-party macros.</span></div><section class="feature-callout"><div class="detail-label">What does this macro do?</div><h2>${macro.whatItDoes}</h2></section><section class="detail-section overview-section"><div class="detail-label">Overview</div>${macro.longDescription.map((paragraph) => `<p>${paragraph}</p>`).join('')}</section><div class="detail-two-col">${detailList('Features', macro.features)}${detailList('Requirements', macro.requirements)}${detailList('Supported fields', macro.supportedFields)}${detailList('Limitations', macro.limitations)}${detailList('Known issues', macro.knownIssues)}</div>${macro.gallery.length ? `<section class="detail-section"><div class="detail-label">Screenshots & images</div><div class="gallery-grid">${macro.gallery.map((item) => `<button class="gallery-item" type="button"><img src="${item.url}" alt="${item.title || macro.name + ' screenshot'}" loading="lazy" /><span>${item.title || 'Open image'}</span></button>`).join('')}</div></section>` : ''}<section class="detail-section download-section"><div class="detail-label">Download</div><div class="resource-grid">${macro.downloads.map((download) => `<a class="resource-card" href="${download.url}" target="_blank" rel="noreferrer">${icon('download', 18)}<span><strong>${download.label}</strong><small>${download.description}</small></span>${icon('external-link', 15)}</a>`).join('')}</div></section><section class="detail-section"><div class="detail-label">Official links & sources</div><div class="link-list">${[...macro.links, ...macro.sources].map((link) => `<a href="${link.url}" target="_blank" rel="noreferrer"><span>${link.label}</span>${icon('external-link', 14)}</a>`).join('')}</div></section><div class="detail-meta-grid"><div><span>Current version</span><strong>${macro.version || 'Not available yet'}</strong></div><div><span>Last updated</span><strong>${macro.lastUpdated || 'Not available yet'}</strong></div><div><span>Last verified</span><strong>${macro.lastVerified}</strong></div>${macro.githubStats.stars !== null ? `<div><span>GitHub stars</span><strong>${macro.githubStats.stars.toLocaleString()}</strong></div>` : ''}</div></section>`;
+}
+
+function renderMacroResults() {
+  const query = document.querySelector('#macro-search')?.value.toLowerCase() || '';
+  const platform = document.querySelector('#platform-filter')?.value || 'all';
+  const status = document.querySelector('#status-filter')?.value || 'all';
+  const sort = document.querySelector('#sort-filter')?.value || 'recommended';
+  const searchable = (macro) => [macro.name, macro.developer, macro.description, macro.status, ...macro.category, ...macro.platforms, ...macro.features].join(' ').toLowerCase();
+  const results = macros.filter((macro) => (!query || searchable(macro).includes(query)) && (platform === 'all' || macro.platforms.includes(platform)) && (status === 'all' || macro.status === status)).sort((a, b) => sort === 'rating' ? b.rating - a.rating : sort === 'rank' ? a.rank - b.rank : sort === 'alpha' ? a.name.localeCompare(b.name) : 0);
+  document.querySelector('#macro-grid').innerHTML = results.length ? results.map(macroCard).join('') : '<div class="empty-results">No macro projects match those filters.</div>';
+  document.querySelector('#macro-result-count').textContent = `${results.length} project${results.length === 1 ? '' : 's'}`;
+  bindTiltCards();
+  refreshIcons();
+}
+
 function bindGlobalInteractions() {
   const menuButton = document.querySelector('.menu-trigger');
   const mobileMenu = document.querySelector('.mobile-menu');
@@ -56,25 +85,43 @@ function bindGlobalInteractions() {
   });
 
   document.querySelectorAll('[data-tilt]').forEach((card) => {
+    let frame;
     card.addEventListener('pointermove', (event) => {
       if (window.matchMedia('(pointer: coarse)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const rect = card.getBoundingClientRect();
       const x = (event.clientX - rect.left) / rect.width;
       const y = (event.clientY - rect.top) / rect.height;
-      card.style.setProperty('--rotate-x', `${(0.5 - y) * 7}deg`);
-      card.style.setProperty('--rotate-y', `${(x - 0.5) * 7}deg`);
-      card.style.setProperty('--glow-x', `${x * 100}%`);
-      card.style.setProperty('--glow-y', `${y * 100}%`);
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => { card.style.setProperty('--rotate-x', `${(0.5 - y) * 6}deg`); card.style.setProperty('--rotate-y', `${(x - 0.5) * 6}deg`); card.style.setProperty('--glow-x', `${x * 100}%`); card.style.setProperty('--glow-y', `${y * 100}%`); });
+      const video = card.querySelector('video');
+      if (video) video.play().catch(() => {});
     });
     card.addEventListener('pointerleave', () => {
+      cancelAnimationFrame(frame);
       card.style.setProperty('--rotate-x', '0deg');
       card.style.setProperty('--rotate-y', '0deg');
       card.style.setProperty('--glow-x', '50%');
       card.style.setProperty('--glow-y', '50%');
+      const video = card.querySelector('video');
+      if (video) { video.pause(); video.currentTime = 0; }
     });
   });
 
   document.querySelector('.search-trigger')?.addEventListener('click', () => document.querySelector('.search-bar input')?.focus());
+  ['macro-search', 'platform-filter', 'status-filter', 'sort-filter'].forEach((id) => document.querySelector(`#${id}`)?.addEventListener('input', renderMacroResults));
+  document.querySelectorAll('.gallery-item').forEach((item) => item.addEventListener('click', () => {
+    const image = item.querySelector('img');
+    const lightbox = document.createElement('dialog');
+    lightbox.className = 'lightbox';
+    lightbox.innerHTML = `<button type="button" aria-label="Close image">${icon('x', 20)}</button><img src="${image.src}" alt="${image.alt}" />`;
+    document.body.append(lightbox);
+    lightbox.showModal();
+    refreshIcons();
+    lightbox.querySelector('button').addEventListener('click', () => lightbox.close());
+    lightbox.addEventListener('close', () => lightbox.remove());
+  }));
 }
 
-shell(path === '/explore' ? explorePage() : path === '/about' ? aboutPage() : homePage());
+const detailSlug = path.startsWith('/macros/') ? path.split('/')[2] : null;
+const detailMacro = detailSlug ? macros.find((macro) => macro.slug === detailSlug) : null;
+shell(detailMacro ? macroDetail(detailMacro) : path === '/macros' || path.startsWith('/macros/') ? macroDirectory() : path === '/explore' ? explorePage() : path === '/about' ? aboutPage() : homePage());

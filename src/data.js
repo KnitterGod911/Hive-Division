@@ -1,5 +1,5 @@
 export const categories = [
-  { name: 'Macros', description: 'Build smarter routines for longer sessions.', icon: 'bot', status: 'Coming soon' },
+  { name: 'Macros', description: 'Compare real projects and find your next automation.', icon: 'bot', status: 'Live', href: '/macros' },
   { name: 'Guides', description: 'Clear paths through every stage of the hive.', icon: 'book-open', status: 'Coming soon' },
   { name: 'Progression', description: 'See what to chase next, at every level.', icon: 'trending-up', status: 'Coming soon' },
   { name: 'Items', description: 'A future reference for every useful pickup.', icon: 'package', status: 'Coming soon' },
@@ -12,5 +12,6 @@ export const categories = [
 export const footerLinks = [
   { label: 'Home', href: '/' },
   { label: 'Explore', href: '/explore' },
+  { label: 'Macros', href: '/macros' },
   { label: 'About', href: '/about' },
 ];
