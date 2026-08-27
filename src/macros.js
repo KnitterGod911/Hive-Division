@@ -11,7 +11,7 @@ export const macros = [
     status: 'Active', version: '', lastUpdated: '', lastVerified: '2026-08-27', platforms: ['Windows', 'macOS'],
     features: ['AI stinger hop', 'AI pathfinding', 'Field gathering', 'Dispenser collection'], supportedFields: [],
     requirements: ['Windows or macOS', 'Bee Swarm Simulator'], limitations: [], knownIssues: [],
-    coverImage: '', coverGif: '', coverVideo: '', gallery: [], media: [],
+    coverImage: '/images/macros/revolution/cover.png', coverGif: '', coverVideo: '', gallery: [], media: [],
     downloads: [{ label: 'GitHub Releases', url: 'https://github.com/nosyliam/revolution-macro/releases', type: 'github-release', platform: 'Windows / macOS', verified: true, description: 'Official releases published by the project.' }],
     links: [{ label: 'GitHub Repository', url: 'https://github.com/nosyliam/revolution-macro', type: 'github-repository' }, { label: 'Official Discord', url: 'https://discord.gg/HDJk6aEyt4', type: 'discord' }],
     githubStats: { stars: 166, forks: null, issues: null, language: '', updated: '' },
