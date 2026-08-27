@@ -85,6 +85,8 @@ h1 span, h2 em { color: var(--gold); font-style: normal; }
 
 .detail-overview-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .72fr); gap: 55px; align-items: start; }
 .macro-cover-hover-video { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; display: block; object-fit: cover; opacity: 0; transition: opacity .25s ease; }
+.macro-cover-hover-video[src] { border: 0; pointer-events: none; }
+.macro-media iframe.macro-cover-hover-video { object-fit: initial; }
 .macro-card.is-playing-demo .macro-cover-hover-video { opacity: 1; }
 .macro-card.is-playing-demo .macro-media::after { z-index: 2; }
 .detail-overview-grid .detail-section { min-width: 0; }
@@ -95,8 +97,11 @@ h1 span, h2 em { color: var(--gold); font-style: normal; }
 .detail-demo:hover .demo-media-frame { border-color: rgba(242,185,55,.45); box-shadow: 0 18px 42px rgba(0,0,0,.35), 0 0 25px rgba(242,185,55,.1); }
 .demo-media-frame::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.42)); }
 .demo-media-frame img, .demo-media-frame video { width: 100%; height: 100%; min-height: 210px; display: block; object-fit: cover; }
+.demo-media-frame iframe { width: 100%; height: 210px; display: block; border: 0; }
 .demo-media-frame .media-type { z-index: 1; }
 .demo-media > small { display: block; margin-top: 12px; color: var(--muted); font: 10px 'DM Mono', monospace; line-height: 1.6; }
+.demo-media-attribution { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin-top: 12px; color: var(--muted); font: 10px 'DM Mono', monospace; }
+.demo-media-attribution a { display: inline-flex; align-items: center; gap: 5px; color: var(--gold); }
 .demo-media-empty { min-height: 210px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; padding: 28px; border: 1px dashed rgba(242,185,55,.3); border-radius: 5px; color: var(--gold); background: repeating-linear-gradient(135deg, rgba(242,185,55,.035) 0 1px, transparent 1px 12px); text-align: center; }
 .demo-media-empty strong { font: 9px 'DM Mono', monospace; letter-spacing: .15em; }
 .demo-media-empty small { max-width: 210px; color: #777a76; font-size: 9px; line-height: 1.6; }

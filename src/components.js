@@ -62,9 +62,9 @@ export function categoryCard(category, index) {
 
 function mediaMarkup(macro, compact = false) {
   const fallback = `<span class="media-placeholder"><span>${icon('hexagon', compact ? 25 : 38)}</span><b>MEDIA COMING SOON</b><small>Add cover media in public/images/macros/${macro.slug}/</small></span>`;
-  const hoverMedia = macro.demoMedia?.find((item) => item.type === 'video' || item.type === 'gif');
+  const hoverMedia = macro.hoverPreview?.type === 'video' ? macro.hoverPreview : macro.demoMedia?.find((item) => item.type === 'video' || item.type === 'gif');
   const image = macro.coverGif ? `<img class="macro-cover-image" src="${macro.coverGif}" alt="${macro.name} animated cover" loading="lazy" />` : macro.coverImage ? `<img class="macro-cover-image" src="${macro.coverImage}" alt="${macro.name} cover" loading="lazy" />` : fallback;
-  const video = hoverMedia?.type === 'video' ? `<video class="macro-cover-hover-video" src="${hoverMedia.src}" muted loop playsinline preload="none"></video>` : hoverMedia?.type === 'gif' ? `<img class="macro-cover-hover-video" src="${hoverMedia.src}" alt="${macro.name} working demo" loading="lazy" />` : macro.coverVideo ? `<video class="macro-cover-hover-video" src="${macro.coverVideo}" muted loop playsinline preload="none"></video>` : '';
+  const video = hoverMedia?.type === 'video' && hoverMedia.sourceUrl ? `<iframe class="macro-cover-hover-video" data-preview-src="https://www.youtube-nocookie.com/embed/${new URL(hoverMedia.sourceUrl).searchParams.get('v')}?autoplay=1&mute=1&loop=1&playlist=${new URL(hoverMedia.sourceUrl).searchParams.get('v')}&controls=0&playsinline=1" title="${macro.name} working demo" allow="autoplay; encrypted-media" loading="lazy"></iframe>` : hoverMedia?.type === 'video' ? `<video class="macro-cover-hover-video" src="${hoverMedia.src}" muted loop playsinline preload="none"></video>` : hoverMedia?.type === 'gif' ? `<img class="macro-cover-hover-video" src="${hoverMedia.src}" alt="${macro.name} working demo" loading="lazy" />` : macro.coverVideo ? `<video class="macro-cover-hover-video" src="${macro.coverVideo}" muted loop playsinline preload="none"></video>` : '';
   const mediaType = hoverMedia || macro.coverVideo ? `${icon('video', 13)} Hover for live footage` : macro.coverGif ? `${icon('play', 13)} GIF cover` : macro.coverImage ? `${icon('image', 13)} Static cover` : `${icon('hexagon', 13)} Media slot`;
   return `<div class="macro-media">${image}${video}<span class="media-type">${mediaType}</span></div>`;
 }
@@ -81,10 +81,11 @@ export function macroCard(macro) {
 }
 
 export function demoMediaMarkup(macro) {
-  const demo = macro.demoMedia?.[0];
+  const demo = macro.hoverPreview || macro.demoMedia?.[0];
   if (!demo) return `<div class="demo-media demo-media-empty"><span>${icon('play', 24)}</span><strong>WORKING DEMO PENDING</strong><small>No official GIF or video has been published for this project yet.</small></div>`;
-  const media = demo.type === 'video' ? `<video src="${demo.src}" muted loop playsinline controls preload="metadata"></video>` : `<img src="${demo.src}" alt="${demo.alt || `${macro.name} working demo`}" loading="lazy" />`;
-  return `<div class="demo-media"><div class="demo-media-frame">${media}<span class="media-type">${icon(demo.type === 'video' ? 'video' : 'play', 13)} ${demo.type === 'video' ? 'Working video' : 'Working GIF'}</span></div><small>${demo.label || 'Official project demo'}</small></div>`;
+  const videoId = demo.sourceUrl ? new URL(demo.sourceUrl).searchParams.get('v') : null;
+  const media = videoId ? `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0&mute=1&loop=1&playlist=${videoId}&playsinline=1" title="${macro.name} working demo" allow="autoplay; encrypted-media" loading="lazy"></iframe>` : demo.type === 'video' ? `<video src="${demo.src}" muted loop playsinline controls preload="metadata"></video>` : `<img src="${demo.src}" alt="${demo.alt || `${macro.name} working demo`}" loading="lazy" />`;
+  return `<div class="demo-media"><div class="demo-media-frame">${media}<span class="media-type">${icon(demo.type === 'video' ? 'video' : 'play', 13)} Working demo</span></div><div class="demo-media-attribution"><small>Source: ${demo.sourceName}</small><small>Creator: ${demo.creator}</small><a href="${demo.sourceUrl}" target="_blank" rel="noreferrer">View Original ${icon('arrow-up-right', 13)}</a></div></div>`;
 }
 
 export { mediaMarkup };

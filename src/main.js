@@ -105,13 +105,14 @@ function bindTiltCards() {
       const hoverVideo = card.querySelector('.macro-cover-hover-video');
       if (hoverVideo) {
         card.classList.add('is-playing-demo');
+        if (hoverVideo.dataset.previewSrc && !hoverVideo.src) hoverVideo.src = hoverVideo.dataset.previewSrc;
         if (hoverVideo instanceof HTMLVideoElement) hoverVideo.play().catch(() => {});
       } else {
         const video = card.querySelector('video');
         if (video) video.play().catch(() => {});
       }
     });
-    card.addEventListener('pointerleave', () => { cancelAnimationFrame(frame); card.classList.remove('is-playing-demo'); card.style.setProperty('--rotate-x', '0deg'); card.style.setProperty('--rotate-y', '0deg'); card.style.setProperty('--cover-rotate-x', '0deg'); card.style.setProperty('--cover-rotate-y', '0deg'); card.style.setProperty('--cover-shift-x', '0px'); card.style.setProperty('--cover-shift-y', '0px'); card.style.setProperty('--glow-x', '50%'); card.style.setProperty('--glow-y', '50%'); const video = card.querySelector('video'); if (video) { video.pause(); video.currentTime = 0; } });
+    card.addEventListener('pointerleave', () => { cancelAnimationFrame(frame); card.classList.remove('is-playing-demo'); card.style.setProperty('--rotate-x', '0deg'); card.style.setProperty('--rotate-y', '0deg'); card.style.setProperty('--cover-rotate-x', '0deg'); card.style.setProperty('--cover-rotate-y', '0deg'); card.style.setProperty('--cover-shift-x', '0px'); card.style.setProperty('--cover-shift-y', '0px'); card.style.setProperty('--glow-x', '50%'); card.style.setProperty('--glow-y', '50%'); const video = card.querySelector('video'); if (video) { video.pause(); video.currentTime = 0; } const preview = card.querySelector('[data-preview-src]'); if (preview) preview.removeAttribute('src'); });
   });
 }
 
