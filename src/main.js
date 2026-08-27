@@ -1,6 +1,7 @@
 import { categories } from './data.js';
 import { macros } from './macros.js';
 import { header, footer, refreshIcons, searchBar, button, categoryCard, icon, macroCard, mediaMarkup } from './components.js';
+import { CustomCursor } from './CustomCursor.js';
 import './styles.css';
 
 const app = document.querySelector('#app');
@@ -134,3 +135,4 @@ function bindTiltCards() {
 const detailSlug = path.startsWith('/macros/') ? path.split('/')[2] : null;
 const detailMacro = detailSlug ? macros.find((macro) => macro.slug === detailSlug) : null;
 shell(detailMacro ? macroDetail(detailMacro) : path === '/macros' || path.startsWith('/macros/') ? macroDirectory() : path === '/explore' ? explorePage() : path === '/about' ? aboutPage() : homePage());
+CustomCursor();
