@@ -78,6 +78,13 @@ export function macroCard(macro) {
   </article>`;
 }
 
+export function demoMediaMarkup(macro) {
+  const demo = macro.demoMedia?.[0];
+  if (!demo) return `<div class="demo-media demo-media-empty"><span>${icon('play', 24)}</span><strong>WORKING DEMO PENDING</strong><small>No official GIF or video has been published for this project yet.</small></div>`;
+  const media = demo.type === 'video' ? `<video src="${demo.src}" muted loop playsinline controls preload="metadata"></video>` : `<img src="${demo.src}" alt="${demo.alt || `${macro.name} working demo`}" loading="lazy" />`;
+  return `<div class="demo-media"><div class="demo-media-frame">${media}<span class="media-type">${icon(demo.type === 'video' ? 'video' : 'play', 13)} ${demo.type === 'video' ? 'Working video' : 'Working GIF'}</span></div><small>${demo.label || 'Official project demo'}</small></div>`;
+}
+
 export { mediaMarkup };
 
 export function footer() {
