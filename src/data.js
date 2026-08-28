@@ -17,9 +17,33 @@ export const footerLinks = [
   { label: 'About', href: '/about' },
 ];
 
+const blueBeeImages = [
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/6/66/CoolBeeFace.png/revision/latest?cb=20230507003722',
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/9/99/GiftedBubbleBeehive.PNG/revision/latest?cb=20180822035016',
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/2/24/BuckoBee_Hive.png/revision/latest/scale-to-width-down/220?cb=20180504233352',
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/9/94/Tadpole_Bee_Face.png/revision/latest/scale-to-width-down/220?cb=20230227085930',
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/d/dc/Buoyant_Face.png/revision/latest/scale-to-width-down/220?cb=20230227091123',
+];
+
+const whiteBeeImages = [
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/c/cf/New_Basic_Bee_hive_Slot.png/revision/latest/scale-to-width-down/220?cb=20260401033147',
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/3/36/LookerBee_Hive.png/revision/latest?cb=20180504233026',
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/e/ea/CommandoFaceOutline.png/revision/latest?cb=20230227071916',
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/2/26/Vector_Bee_Face.png/revision/latest/scale-to-width-down/220?cb=20230227090717',
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/a/a5/FuzzyBeeFace.png/revision/latest?cb=20230227090920',
+];
+
+const redBeeImages = [
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/f/f2/RascalBee_Hive.png/revision/latest?cb=20180504233222',
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/0/06/Firebee.PNG/revision/latest?cb=20190203121110',
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/7/7a/RileyBee_Hive.png/revision/latest?cb=20180504233751',
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/a/ae/Spicy_Bee_Face.png/revision/latest/scale-to-width-down/220?cb=20230227090647',
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/5/56/Precise_Bee_Face.png/revision/latest/scale-to-width-down/220?cb=20230227090816',
+];
+
 export const progressionHives = [
-  { name: 'Blue Hive', color: 'blue', href: '#blue-hive', icon: 'https://static.wikia.nocookie.net/bee-swarm-simulator/images/7/75/Diamond_Mask.png/revision/latest/scale-to-width-down/406?cb=20190403022722', bees: ['https://static.wikia.nocookie.net/bee-swarm-simulator/images/d/dc/Buoyant_Face.png/revision/latest/scale-to-width-down/220?cb=20230227091123', 'https://static.wikia.nocookie.net/bee-swarm-simulator/images/9/94/Tadpole_Bee_Face.png/revision/latest/scale-to-width-down/220?cb=20230227085930'] },
-  { name: 'White Hive', color: 'white', href: '#white-hive', icon: 'https://static.wikia.nocookie.net/bee-swarm-simulator/images/5/50/Gummy_Mask.png/revision/latest/scale-to-width-down/408?cb=20210919012419', bees: ['https://static.wikia.nocookie.net/bee-swarm-simulator/images/a/a5/FuzzyBeeFace.png/revision/latest?cb=20230227090920', 'https://static.wikia.nocookie.net/bee-swarm-simulator/images/2/26/Vector_Bee_Face.png/revision/latest/scale-to-width-down/220?cb=20230227090717'] },
-  { name: 'Mixed Hive', color: 'mixed', href: '#mixed-hive', icon: 'https://static.wikia.nocookie.net/bee-swarm-simulator/images/f/f0/Honey_Mask.png/revision/latest/scale-to-width-down/415?cb=20190403022334', bees: ['https://static.wikia.nocookie.net/bee-swarm-simulator/images/a/a5/FuzzyBeeFace.png/revision/latest?cb=20230227090920', 'https://static.wikia.nocookie.net/bee-swarm-simulator/images/2/26/Vector_Bee_Face.png/revision/latest/scale-to-width-down/220?cb=20230227090717'] },
-  { name: 'Red Hive', color: 'red', href: '#red-hive', icon: 'https://static.wikia.nocookie.net/bee-swarm-simulator/images/9/96/Demon_Mask.png/revision/latest?cb=20210919013026', bees: ['https://static.wikia.nocookie.net/bee-swarm-simulator/images/5/56/Precise_Bee_Face.png/revision/latest/scale-to-width-down/220?cb=20230227090816', 'https://static.wikia.nocookie.net/bee-swarm-simulator/images/a/ae/Spicy_Bee_Face.png/revision/latest/scale-to-width-down/220?cb=20230227090647'] },
+  { name: 'Blue Hive', color: 'blue', href: '#blue-hive', icon: 'https://static.wikia.nocookie.net/bee-swarm-simulator/images/7/75/Diamond_Mask.png/revision/latest/scale-to-width-down/406?cb=20190403022722', bees: blueBeeImages },
+  { name: 'White Hive', color: 'white', href: '#white-hive', icon: 'https://static.wikia.nocookie.net/bee-swarm-simulator/images/5/50/Gummy_Mask.png/revision/latest/scale-to-width-down/408?cb=20210919012419', bees: whiteBeeImages },
+  { name: 'Mixed Hive', color: 'mixed', href: '#mixed-hive', icon: 'https://static.wikia.nocookie.net/bee-swarm-simulator/images/f/f0/Honey_Mask.png/revision/latest/scale-to-width-down/415?cb=20190403022334', bees: [...blueBeeImages, ...whiteBeeImages, ...redBeeImages] },
+  { name: 'Red Hive', color: 'red', href: '#red-hive', icon: 'https://static.wikia.nocookie.net/bee-swarm-simulator/images/9/96/Demon_Mask.png/revision/latest?cb=20210919013026', bees: redBeeImages },
 ];
