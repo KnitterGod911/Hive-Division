@@ -8,6 +8,7 @@ export const beeRarities = [
   { slug: 'epic', name: 'Epic', description: 'Powerful bees with focused strengths.', color: 'epic' },
   { slug: 'legendary', name: 'Legendary', description: 'Exceptional bees with defining hive powers.', color: 'legendary' },
   { slug: 'mythic', name: 'Mythic', description: 'The rarest bees, built around unique mechanics.', color: 'mythic' },
+  { slug: 'event', name: 'Event', description: 'Unique bees earned through special events and quests.', color: 'event' },
 ];
 
 export const beesByRarity = {
@@ -52,5 +53,18 @@ export const beesByRarity = {
     bee('Spicy Bee', 'red', 'a/ae/Spicy_Bee_Face.png/revision/latest/scale-to-width-down/220?cb=20230227090647', 'Creates flame fuel and inferno abilities that amplify red pollen.'),
     bee('Tadpole Bee', 'blue', '9/94/Tadpole_Bee_Face.png/revision/latest/scale-to-width-down/220?cb=20230227085930', 'Creates bubbles and frogs that support blue pollen and token generation.'),
     bee('Vector Bee', 'colorless', '2/26/Vector_Bee_Face.png/revision/latest/scale-to-width-down/220?cb=20230227090717', 'Creates Triangulate marks that reward precise movement and marked flowers.'),
+  ],
+  event: [
+    bee('Bear Bee', 'colorless', '0/06/BearFaceOutline.png/revision/latest?cb=20230409175318', 'Transforms the player into a bear and grants temporary gathering bonuses.'),
+    bee('Cobalt Bee', 'blue', '3/37/CrimsonCobaltIcon.png/revision/latest/scale-to-width-down/220?cb=20240224221926', 'A blue event bee that creates blue Pulse tokens and boosts blue pollen.'),
+    bee('Crimson Bee', 'red', 'b/b3/GiftedCrimsonBee_Slot.png/revision/latest/scale-to-width-down/220?cb=20181015180055', 'A red event bee that creates red Pulse tokens and boosts red pollen.'),
+    bee('Digital Bee', 'colorless', 'f/fe/OriginalDigital.png/revision/latest/scale-to-width-down/220?cb=20230422160530', 'Copies enemy abilities and creates Code Mark tokens to amplify gathering.'),
+    bee('Festive Bee', 'colorless', 'c/c9/FestiveFaceOutline.png/revision/latest?cb=20230410011930', 'Creates festive gifts and boosts the hive with seasonal support tokens.'),
+    bee('Gummy Bee', 'colorless', '8/82/Gifted_Gummy_Bee_hive.PNG/revision/latest/scale-to-width-down/220?cb=20180812153239', 'Creates Goo and Goo puddles that collect pollen from nearby flowers.'),
+    bee('Photon Bee', 'colorless', '5/51/Photon.png/revision/latest?cb=20180524091730', 'Fires a beam that gathers pollen and creates Beamstorm tokens.'),
+    bee('Puppy Bee', 'colorless', 'b/b6/PuppyBeeOutline.png/revision/latest?cb=20230410011849', 'Creates Fetch tokens and supports pollen conversion and capacity.'),
+    bee('Tabby Bee', 'colorless', '2/29/Tabby.PNG/revision/latest?cb=20180512200105', 'Builds Tabby Love stacks to improve pollen and critical gathering.'),
+    bee('Vicious Bee', 'colorless', '5/5c/GiftedViciousBee_Slot.png/revision/latest?cb=20181004193341', 'Creates impaling spikes and provides exceptional attack against enemies.'),
+    bee('Windy Bee', 'colorless', '9/9e/Windy_Face.png/revision/latest?cb=20230410011907', 'Creates tornadoes that gather pollen and rewards Wind Blessing.'),
   ],
 };

@@ -1,7 +1,7 @@
 import { categories, progressionHives } from './data.js';
 import { beeRarities, beesByRarity } from './bees.js';
 import { macros } from './macros.js';
-import { header, footer, refreshIcons, searchBar, button, categoryCard, progressionCard, icon, macroCard, mediaMarkup, demoMediaMarkup } from './components.js';
+import { header, footer, refreshIcons, searchBar, button, categoryCard, progressionCard, beeRarityCard, beeCard, icon, macroCard, mediaMarkup, demoMediaMarkup } from './components.js';
 import { CustomCursor } from './CustomCursor.js';
 import './styles.css';
 
