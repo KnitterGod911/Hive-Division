@@ -141,6 +141,11 @@ const giftedAbilities = {
   'Bear Bee': '+10% all pollen', 'Cobalt Bee': '+15% blue pollen', 'Crimson Bee': '+15% red pollen', 'Digital Bee': '+1% super-crit chance', 'Festive Bee': '+15% convert rate', 'Gummy Bee': '+1.5x goo conversion', 'Photon Bee': '+5% instant conversion', 'Puppy Bee': '+20% bond from treats', 'Tabby Bee': '+50% Tabby Love pollen', 'Vicious Bee': '+15% bee attack', 'Windy Bee': '+15% white pollen',
 };
 
+const giftedSpecialAbilities = {
+  'Bear Bee': 'Gifted Bear Morph has a 20% chance to transform the player into a rare bear. Mother Bear gives x2.5 pollen and x1.5 bee-gather pollen; Science Bear grants +1 convert rate and +1% ability rate.',
+  'Digital Bee': 'Gifted Digital Bee unlocks Map Corruption: it corrupts a random field for all players for 3 minutes, plus 15 seconds per bee level. Drives increase the corruption amount, up to 300.',
+};
+
 Object.entries(beesByRarity).forEach(([rarity, bees]) => bees.forEach((beeData) => {
   beeData.rarity = rarity;
   beeData.slug = beeData.name.toLowerCase().replace(/ bee$/, '').replace(/[^a-z0-9]+/g, '-');
@@ -148,5 +153,6 @@ Object.entries(beesByRarity).forEach(([rarity, bees]) => bees.forEach((beeData) 
   beeData.giftedBonus = giftedBonuses[beeData.name] || 'Gifted bonus information is maintained on the BSS Wiki.';
   beeData.ability = abilityDetails[beeData.name] || beeData.description;
   beeData.giftedAbility = giftedAbilities[beeData.name] || 'Gifted ability information is maintained on the BSS Wiki.';
+  beeData.giftedSpecialAbility = giftedSpecialAbilities[beeData.name] || null;
   beeData.wikiUrl = `https://bee-swarm-simulator.fandom.com/wiki/${beeData.name.replace(/ /g, '_')}`;
 }));
