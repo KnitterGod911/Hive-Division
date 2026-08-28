@@ -169,6 +169,12 @@ h1 span, h2 em { color: var(--gold); font-style: normal; }
 .bee-card-info { position: relative; z-index: 2; }
 .bee-card-link, .wiki-source { display: inline-flex; align-items: center; gap: 6px; color: var(--gold); font: 10px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .06em; }
 .bee-card-link { margin-top: 16px; }
+.enemy-card .enemy-type { display: inline-block; margin-bottom: 8px; color: var(--gold); font: 9px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; }
+.enemy-card-boss { --bee-color: #85413a; }
+.enemy-card-standard { --bee-color: #55684c; }
+.enemy-detail-image { --bee-color: #55684c; }
+.enemy-info-panel h2 { color: var(--gold); }
+.enemy-info-panel-highlight { grid-column: 1 / -1; border-color: rgba(242,185,55,.42); background: rgba(242,185,55,.06); }
 .bee-detail-hero { padding-top: 38px; padding-bottom: 72px; }
 .bee-detail-grid { display: grid; grid-template-columns: minmax(280px, .8fr) minmax(0, 1fr); gap: 65px; align-items: center; }
 .bee-detail-image { min-height: 390px; display: grid; place-items: center; padding: 45px; border: 1px solid rgba(255,255,255,.15); border-radius: 7px; background: var(--bee-color); }

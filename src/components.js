@@ -77,6 +77,10 @@ export function beeCard(beeData, index) {
   return `<a class="bee-card bee-card-${beeData.color} tilt-card" href="/bees/${beeData.rarity}/${beeData.slug}" style="--delay: ${index * 40}ms" data-tilt><div class="bee-card-image"><img src="${beeData.image}" alt="${beeData.name}" loading="lazy" /></div><div class="bee-card-info"><h3>${beeData.name}</h3><p>${beeData.description}</p><span class="bee-card-link">View bee details ${icon('arrow-up-right', 14)}</span></div></a>`;
 }
 
+export function enemyCard(enemyData, index) {
+  return `<a class="bee-card enemy-card enemy-card-${enemyData.type === 'Boss' || enemyData.type === 'Event boss' ? 'boss' : 'standard'} tilt-card" href="/enemies/${enemyData.slug}" style="--delay: ${index * 40}ms" data-tilt><div class="bee-card-image"><img src="${enemyData.image}" alt="${enemyData.name}" loading="lazy" /></div><div class="bee-card-info"><span class="enemy-type">${enemyData.type}</span><h3>${enemyData.name}</h3><p>${enemyData.description}</p><span class="bee-card-link">View enemy details ${icon('arrow-up-right', 14)}</span></div></a>`;
+}
+
 function mediaMarkup(macro, compact = false) {
   const fallback = `<span class="media-placeholder"><span>${icon('hexagon', compact ? 25 : 38)}</span><b>MEDIA COMING SOON</b><small>Add cover media in public/images/macros/${macro.slug}/</small></span>`;
   const image = macro.coverImage ? `<img class="macro-cover-image" src="${macro.coverImage}" alt="${macro.name} cover" loading="lazy" />` : fallback;

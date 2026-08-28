@@ -1,7 +1,8 @@
 import { categories, progressionHives } from './data.js';
 import { beeRarities, beesByRarity, giftedEventBeeOrder } from './bees.js';
+import { enemies, enemyBySlug } from './enemies.js';
 import { macros } from './macros.js';
-import { header, footer, refreshIcons, searchBar, button, categoryCard, progressionCard, beeRarityCard, beeCard, icon, macroCard, mediaMarkup, demoMediaMarkup } from './components.js';
+import { header, footer, refreshIcons, searchBar, button, categoryCard, progressionCard, beeRarityCard, beeCard, enemyCard, icon, macroCard, mediaMarkup, demoMediaMarkup } from './components.js';
 import { CustomCursor } from './CustomCursor.js';
 import './styles.css';
 
@@ -9,7 +10,7 @@ const app = document.querySelector('#app');
 const path = window.location.pathname.replace(/\/$/, '') || '/';
 
 function shell(content) {
-  const activePath = path.startsWith('/macros') ? '/macros' : path.startsWith('/bees') ? '/bees' : path === '/explore' ? '/explore' : path === '/progression' ? '/progression' : path === '/about' ? '/about' : '/';
+  const activePath = path.startsWith('/macros') ? '/macros' : path.startsWith('/bees') ? '/bees' : path.startsWith('/enemies') ? '/enemies' : path === '/explore' ? '/explore' : path === '/progression' ? '/progression' : path === '/about' ? '/about' : '/';
   app.innerHTML = `${header(activePath)}<main>${content}</main>${footer()}`;
   bindGlobalInteractions();
   bindTiltCards();
@@ -48,6 +49,15 @@ function progressionPage() {
 
 function beesPage() {
   return `<section class="subpage-hero page-wrap"><span class="eyebrow">Directory / Hive biology</span><h1>Meet the<br /><span>bees.</span></h1><p>Explore every bee by rarity and learn what makes each one useful.</p></section><section class="bee-directory page-wrap section-space"><div class="bee-rarity-grid">${beeRarities.map(beeRarityCard).join('')}</div></section>`;
+}
+
+function enemiesPage() {
+  return `<section class="subpage-hero page-wrap"><span class="eyebrow">Directory / Field threats</span><h1>Know your<br /><span>enemies.</span></h1><p>Learn what each enemy does, what it drops, and when it will respawn.</p></section><section class="bee-listing page-wrap section-space"><div class="bee-listing-meta"><span>${enemies.length.toString().padStart(2, '0')} enemies</span><span>Enemy information and timers sourced from the Bee Swarm Simulator Wiki.</span></div><div class="bee-grid">${enemies.map((enemyData, index) => enemyCard(enemyData, index)).join('')}</div></section>`;
+}
+
+function enemyDetailPage(enemyData) {
+  const viciousTiming = enemyData.name === 'Vicious Bee' ? `<section class="enemy-info-panel enemy-info-panel-highlight"><span class="detail-label">Gifted Vicious Bee difference</span><h2>25 minutes 30 seconds</h2><p>Gifted Vicious Bee grants -15% Mob Respawn Time. That reduces the normal 30-minute respawn by 4 minutes 30 seconds.</p></section>` : '';
+  return `<section class="bee-detail-hero page-wrap"><a class="back-link" href="/enemies">${icon('arrow-up-right', 15)} Back to enemies</a><div class="bee-detail-grid"><div class="bee-detail-image enemy-detail-image"><img src="${enemyData.image}" alt="${enemyData.name}" /></div><div class="bee-detail-identity"><span class="eyebrow">Enemy directory / ${enemyData.type}</span><h1>${enemyData.name}</h1><p>${enemyData.description}</p></div></div></section><section class="bee-detail-content page-wrap section-space"><div class="bee-info-grid enemy-info-grid"><section class="bee-info-panel"><span class="detail-label">What it does</span><h2>Behavior</h2><p>${enemyData.behavior}</p></section><section class="bee-info-panel"><span class="detail-label">Defeat rewards</span><h2>What it drops</h2><p>${enemyData.drops}</p></section><section class="bee-info-panel"><span class="detail-label">Respawn timer</span><h2>${enemyData.respawn}</h2><p>The timer starts after this enemy is defeated.</p></section>${viciousTiming}</div></section>`;
 }
 
 function beeRarityPage(raritySlug) {
@@ -192,7 +202,9 @@ const detailMacro = detailSlug ? macros.find((macro) => macro.slug === detailSlu
 const beeRaritySlug = path.startsWith('/bees/') ? path.split('/')[2] : null;
 const beeSlug = path.startsWith('/bees/') ? path.split('/')[3] : null;
 const detailBee = beeSlug ? Object.values(beesByRarity).flat().find((beeData) => beeData.rarity === beeRaritySlug && beeData.slug === beeSlug) : null;
-shell(detailMacro ? macroDetail(detailMacro) : detailBee ? beeDetailPage(detailBee) : path === '/macros' || path.startsWith('/macros/') ? macroDirectory() : path === '/explore' ? explorePage() : path === '/progression' ? progressionPage() : path === '/bees' ? beesPage() : beeRaritySlug ? beeRarityPage(beeRaritySlug) : path === '/about' ? aboutPage() : homePage());
+const enemySlug = path.startsWith('/enemies/') ? path.split('/')[2] : null;
+const detailEnemy = enemySlug ? enemyBySlug(enemySlug) : null;
+shell(detailMacro ? macroDetail(detailMacro) : detailBee ? beeDetailPage(detailBee) : detailEnemy ? enemyDetailPage(detailEnemy) : path === '/macros' || path.startsWith('/macros/') ? macroDirectory() : path === '/explore' ? explorePage() : path === '/progression' ? progressionPage() : path === '/bees' ? beesPage() : path === '/enemies' ? enemiesPage() : beeRaritySlug ? beeRarityPage(beeRaritySlug) : path === '/about' ? aboutPage() : homePage());
 if (detailMacro) document.querySelector('.detail-content')?.insertAdjacentHTML('beforeend', detailSupplement(detailMacro));
 CustomCursor();
 
