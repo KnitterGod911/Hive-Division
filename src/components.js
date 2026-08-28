@@ -63,7 +63,7 @@ export function categoryCard(category, index) {
 
 export function progressionCard(hive, index) {
   return `<a class="progression-card progression-card-${hive.color} tilt-card" href="${hive.href}" style="--delay: ${index * 55}ms" data-tilt>
-    <span class="progression-card-cover"><span class="progression-card-mark">${icon('hexagon', 58)}</span><span class="progression-card-index">0${index + 1}</span></span>
+    <span class="progression-card-cover"><span class="progression-card-mark"><img class="progression-card-icon" src="${hive.icon}" alt="${hive.name.replace('Hive', 'Mask')}" loading="lazy" /></span><span class="progression-card-index">0${index + 1}</span></span>
     <span class="progression-card-footer"><strong>${hive.name}</strong>${icon('arrow-up-right', 17)}</span>
   </a>`;
 }
