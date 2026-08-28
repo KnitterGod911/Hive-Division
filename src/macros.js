@@ -14,7 +14,7 @@ export const macros = [
     coverImage: '/images/macros/revolution/cover.png', coverVideo: '', gallery: [], media: [],
     hoverPreview: { type: 'video', sourceUrl: 'https://www.youtube.com/watch?v=8qN8Ubm0SE8', sourceName: 'YouTube', title: 'Revolution macro please comment👌🔥🔥 #macro #beeswarmsimulator #shorts #viral @RevolutionMacro', creator: 'chaseMTB', demonstratesMacro: true },
     downloads: [{ label: 'GitHub Releases', url: 'https://github.com/nosyliam/revolution-macro/releases', type: 'github-release', platform: 'Windows / macOS', verified: true, description: 'Official releases published by the project.' }],
-    links: [{ label: 'GitHub Repository', url: 'https://github.com/nosyliam/revolution-macro', type: 'github-repository' }, { label: 'Official Discord', url: 'https://discord.gg/HDJk6aEyt4', type: 'discord' }],
+    links: [{ label: 'GitHub Repository', url: 'https://github.com/nosyliam/revolution-macro', type: 'github-repository' }, { label: 'Macro Website', url: 'https://revolutionmacro.com/', type: 'macro-website' }, { label: 'Official Discord', url: 'https://discord.gg/HDJk6aEyt4', type: 'discord' }],
     githubStats: { stars: 166, forks: null, issues: null, language: '', updated: '' },
     changelog: [], sources: [{ label: 'Project README', url: 'https://github.com/nosyliam/revolution-macro' }]
   },

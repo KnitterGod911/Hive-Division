@@ -129,6 +129,9 @@ function bindGlobalInteractions() {
   });
 
   document.querySelector('.search-trigger')?.addEventListener('click', () => document.querySelector('.search-bar input')?.focus());
+  const macroWebsite = detailMacro?.links.find((link) => link.type === 'macro-website');
+  const githubButton = document.querySelector('.github-button');
+  if (macroWebsite && githubButton) githubButton.insertAdjacentHTML('afterend', button('Website', macroWebsite.url, 'secondary', 'external-link', 'website-button'));
   document.querySelectorAll('.download-action').forEach((downloadButton) => downloadButton.addEventListener('click', (event) => {
     event.preventDefault();
     const githubUrl = downloadButton.closest('.detail-actions')?.querySelector('.github-button')?.href || downloadButton.href;
