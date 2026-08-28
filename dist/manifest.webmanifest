@@ -1,0 +1,19 @@
+{
+  "name": "Hive Division",
+  "short_name": "Hive Division",
+  "description": "The ultimate Bee Swarm Simulator resource hub.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#090a0b",
+  "theme_color": "#f2b937",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/hive-division.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
