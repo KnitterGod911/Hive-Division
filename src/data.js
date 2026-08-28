@@ -34,7 +34,7 @@ const whiteBeeImages = [
 ];
 
 const redBeeImages = [
-  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/e/e7/Rascalfacebutdifferent.png/revision/latest?cb=20230227064905',
+  'https://static.wikia.nocookie.net/bee-swarm-simulator/images/7/7b/Rage_Bee.png/revision/latest?cb=20200404000023',
   'https://static.wikia.nocookie.net/bee-swarm-simulator/images/1/14/Firefaceoriginal.png/revision/latest?cb=20230227075732',
   'https://static.wikia.nocookie.net/bee-swarm-simulator/images/6/64/Riley_Bee.png/revision/latest?cb=20200404000004',
   'https://static.wikia.nocookie.net/bee-swarm-simulator/images/a/ae/Spicy_Bee_Face.png/revision/latest/scale-to-width-down/220?cb=20230227090647',
