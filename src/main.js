@@ -129,6 +129,19 @@ function bindGlobalInteractions() {
   });
 
   document.querySelector('.search-trigger')?.addEventListener('click', () => document.querySelector('.search-bar input')?.focus());
+  document.querySelectorAll('.download-action').forEach((downloadButton) => downloadButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const githubUrl = downloadButton.closest('.detail-actions')?.querySelector('.github-button')?.href || downloadButton.href;
+    const repository = githubUrl.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)/)?.[1];
+    window.open(githubUrl, '_blank', 'noopener');
+    if (!repository) return;
+    const archive = document.createElement('a');
+    archive.href = `https://github.com/${repository}/archive/refs/heads/main.zip`;
+    archive.download = '';
+    document.body.append(archive);
+    archive.click();
+    archive.remove();
+  }));
   const filterControls = document.querySelector('.filter-controls');
   if (filterControls && !document.querySelector('#category-filter')) {
     const categories = [...new Set(macros.flatMap((macro) => macro.category))];

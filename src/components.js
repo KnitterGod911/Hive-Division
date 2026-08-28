@@ -43,8 +43,9 @@ export function searchBar() {
   </form>`;
 }
 
-export function button(label, href, variant = 'primary', iconName = 'arrow-up-right') {
-  return `<a class="button button-${variant}" href="${href}">${label}${icon(iconName, 17)}</a>`;
+export function button(label, href, variant = 'primary', iconName = 'arrow-up-right', className = '') {
+  const actionClass = label === 'Download' ? 'download-action' : label === 'GitHub' ? 'github-button' : '';
+  return `<a class="button button-${variant} ${actionClass} ${className}" href="${href}">${label}${icon(iconName, 17)}</a>`;
 }
 
 export function categoryCard(category, index) {
