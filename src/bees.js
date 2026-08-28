@@ -39,7 +39,7 @@ export const beesByRarity = {
   legendary: [
     bee('Baby Bee', 'colorless', '1/1f/Baby_Bee.png/revision/latest?cb=20200403235158', 'Creates Baby Love, increasing luck and improving the hive\'s gathering potential.'),
     bee('Carpenter Bee', 'colorless', '7/75/Carpenter_Bee.png/revision/latest?cb=20200403235126', 'Creates Mark tokens and gathers pollen from marked flowers more effectively.'),
-    bee('Demon Bee', 'red', '5/51/Png_%2819%29.png/revision/latest?cb=20230410012105', 'A red bee with high attack and strong red pollen abilities.'),
+    bee('Demon Bee', 'red', '8/84/Demon_Bee.png/revision/latest?cb=20200403234445', 'A red bee with high attack and strong red pollen abilities.'),
     bee('Diamond Bee', 'blue', '0/0a/Diamond_Bee.png/revision/latest?cb=20200403234546', 'A blue bee that produces Honey tokens and gathers blue pollen efficiently.'),
     bee('Lion Bee', 'colorless', 'b/b3/Lion_Bee.png/revision/latest?cb=20200403234824', 'A powerful colorless attacker that brings balanced pollen and damage.'),
     bee('Music Bee', 'colorless', '3/38/Music_Bee.png/revision/latest?cb=20200403234902', 'Creates Melody and Focus tokens that improve critical gathering.'),

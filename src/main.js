@@ -157,7 +157,6 @@ function bindGlobalInteractions() {
     event.preventDefault();
     const githubUrl = downloadButton.closest('.detail-actions')?.querySelector('.github-button')?.href || downloadButton.href;
     const repository = githubUrl.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)/)?.[1];
-    window.open(githubUrl, '_blank', 'noopener');
     if (!repository) return;
     const archive = document.createElement('a');
     archive.href = `https://github.com/${repository}/archive/refs/heads/main.zip`;
