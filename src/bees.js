@@ -87,10 +87,25 @@ const giftedBonuses = {
 
 export const giftedEventBeeOrder = [];
 
+const abilityDetails = {
+  'Bear Bee': 'Bear Morph transforms the player into a bear, changing the player appearance and granting bear-themed gathering abilities.',
+  'Cobalt Bee': 'Blue Pulse sends out a blue pulse that collects blue pollen and supports blue hive bonuses.',
+  'Crimson Bee': 'Red Pulse sends out a red pulse that collects red pollen and supports red hive bonuses.',
+  'Digital Bee': 'Digital Bee copies enemy abilities and uses Code Marks to amplify pollen collection and ability effects.',
+  'Festive Bee': 'Festive Gift creates gifts that provide temporary bonuses and useful seasonal effects for the hive.',
+  'Gummy Bee': 'Goo covers flowers in goo. Goo collects pollen and increases the honey gained from those flowers.',
+  'Photon Bee': 'Beamstorm fires a beam that sweeps across flowers, collecting pollen instantly along its path.',
+  'Puppy Bee': 'Fetch sends Puppy Bee after its ball. Returning the ball creates a token and helps the player collect pollen.',
+  'Tabby Bee': 'Scratch swipes a cone in front of the player to collect pollen. Tabby Love permanently improves Tabby Bee pollen.',
+  'Vicious Bee': 'Impale summons spikes beneath enemies, dealing heavy damage and helping the hive defeat hostile mobs.',
+  'Windy Bee': 'Tornado travels through fields collecting pollen, while Wind Blessing improves gathering as it builds.',
+};
+
 Object.entries(beesByRarity).forEach(([rarity, bees]) => bees.forEach((beeData) => {
   beeData.rarity = rarity;
   beeData.slug = beeData.name.toLowerCase().replace(/ bee$/, '').replace(/[^a-z0-9]+/g, '-');
   beeData.tokens = tokenDetails[beeData.name] || ['Ability token information is maintained on the BSS Wiki.'];
   beeData.giftedBonus = giftedBonuses[beeData.name] || 'Gifted bonus information is maintained on the BSS Wiki.';
+  beeData.ability = abilityDetails[beeData.name] || beeData.description;
   beeData.wikiUrl = `https://bee-swarm-simulator.fandom.com/wiki/${beeData.name.replace(/ /g, '_')}`;
 }));
