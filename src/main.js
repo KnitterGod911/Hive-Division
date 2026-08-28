@@ -23,7 +23,7 @@ function homePage() {
       <p class="hero-lede">The ultimate Bee Swarm Simulator resource hub.</p>
       <p class="hero-description">Discover guides, resources, tools, macros, progression information, and everything you need to navigate Bee Swarm Simulator.</p>
       ${searchBar()}
-      <div class="hero-actions">${button('Explore', '/explore')} ${button('Browse macros', '/macros', 'secondary', 'bot')}</div>
+      <div class="hero-actions">${button('Explore', '/explore')}</div>
       <div class="hero-meta"><span>${icon('shield-check', 15)} Community-built knowledge</span><span class="meta-divider"></span><span>Foundation / 01</span></div>
     </div>
     <div class="hero-art" aria-hidden="true"><div class="honey-orbit orbit-one"></div><div class="honey-orbit orbit-two"></div><div class="hive-core"><span class="core-ring"></span><span class="core-mark">${icon('hexagon', 88)}</span></div><span class="art-label label-one">01 / KNOWLEDGE</span><span class="art-label label-two">HIVE SYSTEMS</span></div>
