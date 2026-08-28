@@ -88,6 +88,38 @@ const giftedBonuses = {
 export const giftedEventBeeOrder = [];
 
 const abilityDetails = {
+  'Basic Bee': 'Basic Bee has no special ability token, but its balanced stats make it dependable in any hive.',
+  'Bomber Bee': 'Bomb attacks collect pollen from several nearby flowers, making Bomber Bee useful for early area gathering.',
+  'Brave Bee': 'Brave Bee attacks enemies reliably and contributes red pollen and combat power to developing hives.',
+  'Hasty Bee': 'Haste increases player movement speed, helping the player move between flowers and collect tokens faster.',
+  'Looker Bee': 'Focus improves critical-hit chance, helping the player land more valuable critical pollen collections.',
+  'Rad Bee': 'Red Boost increases red pollen collection and makes Rad Bee a useful early red-hive contributor.',
+  'Rascal Bee': 'Red Bomb gathers red pollen around the player and gives early red hives useful area collection.',
+  'Stubborn Bee': 'Token Link connects nearby ability tokens, helping the player collect effects that would otherwise be missed.',
+  'Bubble Bee': 'Bubbles collect pollen from flowers and support blue-field gathering with repeated area collection.',
+  'Bucko Bee': 'Blue Boost increases blue pollen, strengthening blue-field runs and blue hive production.',
+  'Bumble Bee': 'Bumble Bee creates blue pollen and supports capacity, allowing the player to carry more before converting.',
+  'Cool Bee': 'Cool Bee improves blue pollen collection and gives a growing blue hive consistent blue production.',
+  'Fire Bee': 'Flames burn flowers to collect red pollen over an area, making Fire Bee valuable for red-field farming.',
+  'Frosty Bee': 'Blue Bomb gathers blue pollen around the player and supports efficient blue-field collection.',
+  'Honey Bee': 'Honey tokens convert pollen directly into honey, helping the player maintain conversion while gathering.',
+  'Rage Bee': 'Rage increases bee attack, helping the hive defeat mobs and deal with enemies more quickly.',
+  'Riley Bee': 'Red Boost increases red pollen and makes Riley Bee a core contributor to red hive gathering.',
+  'Shocked Bee': 'Haste increases player movement speed, improving flower routes and token collection speed.',
+  'Baby Bee': 'Baby Love increases loot luck, helping the player receive better drops while the bee follows the hive.',
+  'Carpenter Bee': 'Marks improve pollen collection from marked flowers, rewarding the player for gathering around those marks.',
+  'Demon Bee': 'Red Bomb gathers red pollen while Demon Bee adds strong attack, making it useful for red hives and combat.',
+  'Diamond Bee': 'Honey tokens convert pollen and Diamond Bee adds blue pollen and capacity support to a blue hive.',
+  'Lion Bee': 'Lion Bee is a strong colorless attacker that contributes balanced pollen and dependable combat damage.',
+  'Music Bee': 'Melody and Focus improve critical gathering, while its tokens help the player build stronger critical hits.',
+  'Ninja Bee': 'Haste improves movement speed and Ninja Bee adds blue pollen, making it effective for fast blue routes.',
+  'Shy Bee': 'Red Boost increases red pollen and helps red hives maintain strong collection during field runs.',
+  'Buoyant Bee': 'Balloons store pollen and increase capacity, giving blue hives more room to gather before converting.',
+  'Fuzzy Bee': 'Fuzzy Bee pollinates flowers and boosts their pollen, improving the value of nearby flowers for the whole hive.',
+  'Precise Bee': 'Precision improves critical power and precise marks reward accurate movement around marked flowers.',
+  'Spicy Bee': 'Flames and Inferno cover an area in fire, collecting red pollen and supporting sustained red-field farming.',
+  'Tadpole Bee': 'Bubbles collect pollen while frogs gather around the field, creating persistent blue-area support.',
+  'Vector Bee': 'Triangulate marks three flowers and rewards the player for positioning between them while gathering.',
   'Bear Bee': 'Bear Morph transforms the player into a bear, changing the player appearance and granting bear-themed gathering abilities.',
   'Cobalt Bee': 'Blue Pulse sends out a blue pulse that collects blue pollen and supports blue hive bonuses.',
   'Crimson Bee': 'Red Pulse sends out a red pulse that collects red pollen and supports red hive bonuses.',
@@ -101,11 +133,20 @@ const abilityDetails = {
   'Windy Bee': 'Tornado travels through fields collecting pollen, while Wind Blessing improves gathering as it builds.',
 };
 
+const giftedAbilities = {
+  'Basic Bee': '+20% pollen', 'Bomber Bee': '+15% bomb pollen', 'Brave Bee': '+5% bee attack', 'Hasty Bee': '+15% haste token duration', 'Looker Bee': '+25% critical power', 'Rad Bee': '+15% red pollen', 'Rascal Bee': '+15% red bomb pollen', 'Stubborn Bee': '+20% token duration',
+  'Bubble Bee': '+15% bubble pollen', 'Bucko Bee': '+20% blue pollen', 'Bumble Bee': '+15% capacity', 'Cool Bee': '+15% blue pollen', 'Fire Bee': '+15% flame pollen', 'Frosty Bee': '+15% blue pollen', 'Honey Bee': '+25% honey from tokens', 'Rage Bee': '+15% bee attack', 'Riley Bee': '+20% red pollen', 'Shocked Bee': '+15% shocked pollen',
+  'Baby Bee': '+25% Baby Love loot luck', 'Carpenter Bee': '+25% mark duration', 'Demon Bee': '+15% red pollen', 'Diamond Bee': '+15% capacity', 'Lion Bee': '+5% bee attack', 'Music Bee': '+25% melody duration', 'Ninja Bee': '+15% blue pollen', 'Shy Bee': '+15% red pollen',
+  'Buoyant Bee': '+15% balloon capacity', 'Fuzzy Bee': '+15% pollen', 'Precise Bee': '+15% super-crit chance', 'Spicy Bee': '+15% flame duration', 'Tadpole Bee': '+15% bubble duration', 'Vector Bee': '+15% mark duration',
+  'Bear Bee': '+10% all pollen', 'Cobalt Bee': '+15% blue pollen', 'Crimson Bee': '+15% red pollen', 'Digital Bee': '+1% super-crit chance', 'Festive Bee': '+15% convert rate', 'Gummy Bee': '+1.5x goo conversion', 'Photon Bee': '+5% instant conversion', 'Puppy Bee': '+20% bond from treats', 'Tabby Bee': '+50% Tabby Love pollen', 'Vicious Bee': '+15% bee attack', 'Windy Bee': '+15% white pollen',
+};
+
 Object.entries(beesByRarity).forEach(([rarity, bees]) => bees.forEach((beeData) => {
   beeData.rarity = rarity;
   beeData.slug = beeData.name.toLowerCase().replace(/ bee$/, '').replace(/[^a-z0-9]+/g, '-');
   beeData.tokens = tokenDetails[beeData.name] || ['Ability token information is maintained on the BSS Wiki.'];
   beeData.giftedBonus = giftedBonuses[beeData.name] || 'Gifted bonus information is maintained on the BSS Wiki.';
   beeData.ability = abilityDetails[beeData.name] || beeData.description;
+  beeData.giftedAbility = giftedAbilities[beeData.name] || 'Gifted ability information is maintained on the BSS Wiki.';
   beeData.wikiUrl = `https://bee-swarm-simulator.fandom.com/wiki/${beeData.name.replace(/ /g, '_')}`;
 }));
