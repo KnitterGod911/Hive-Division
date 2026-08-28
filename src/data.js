@@ -16,8 +16,8 @@ export const footerLinks = [
   { label: 'Macros', href: '/macros' },
   { label: 'Progression Guide', href: '/progression' },
   { label: 'Bees', href: '/bees' },
-  { label: 'Mobs', href: '/mobs' },
   { label: 'About', href: '/about' },
+  { label: 'Mobs', href: '/mobs' },
 ];
 
 const blueBeeImages = [
