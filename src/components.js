@@ -69,6 +69,14 @@ export function progressionCard(hive, index) {
   </a>`;
 }
 
+export function beeRarityCard(rarity, index) {
+  return `<a class="bee-rarity-card bee-rarity-${rarity.color} tilt-card" href="/bees/${rarity.slug}" style="--delay: ${index * 55}ms" data-tilt><span class="bee-rarity-index">0${index + 1}</span><span class="bee-rarity-mark">${icon('hexagon', 46)}</span><span><small>Rarity</small><strong>${rarity.name}</strong><em>${rarity.description}</em></span><span class="card-arrow">${icon('arrow-up-right', 18)}</span></a>`;
+}
+
+export function beeCard(beeData, index) {
+  return `<article class="bee-card bee-card-${beeData.color} tilt-card" style="--delay: ${index * 40}ms" data-tilt><div class="bee-card-image"><img src="${beeData.image}" alt="${beeData.name}" loading="lazy" /></div><div class="bee-card-info"><h3>${beeData.name}</h3><p>${beeData.description}</p></div></article>`;
+}
+
 function mediaMarkup(macro, compact = false) {
   const fallback = `<span class="media-placeholder"><span>${icon('hexagon', compact ? 25 : 38)}</span><b>MEDIA COMING SOON</b><small>Add cover media in public/images/macros/${macro.slug}/</small></span>`;
   const image = macro.coverImage ? `<img class="macro-cover-image" src="${macro.coverImage}" alt="${macro.name} cover" loading="lazy" />` : fallback;

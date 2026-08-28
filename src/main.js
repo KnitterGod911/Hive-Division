@@ -1,4 +1,5 @@
 import { categories, progressionHives } from './data.js';
+import { beeRarities, beesByRarity } from './bees.js';
 import { macros } from './macros.js';
 import { header, footer, refreshIcons, searchBar, button, categoryCard, progressionCard, icon, macroCard, mediaMarkup, demoMediaMarkup } from './components.js';
 import { CustomCursor } from './CustomCursor.js';
@@ -8,7 +9,7 @@ const app = document.querySelector('#app');
 const path = window.location.pathname.replace(/\/$/, '') || '/';
 
 function shell(content) {
-  const activePath = path.startsWith('/macros') ? '/macros' : path === '/explore' ? '/explore' : path === '/progression' ? '/progression' : path === '/about' ? '/about' : '/';
+  const activePath = path.startsWith('/macros') ? '/macros' : path.startsWith('/bees') ? '/bees' : path === '/explore' ? '/explore' : path === '/progression' ? '/progression' : path === '/about' ? '/about' : '/';
   app.innerHTML = `${header(activePath)}<main>${content}</main>${footer()}`;
   bindGlobalInteractions();
   bindTiltCards();
@@ -43,6 +44,17 @@ function explorePage() {
 
 function progressionPage() {
   return `<section class="subpage-hero page-wrap"><span class="eyebrow">Guide / Hive direction</span><h1>Choose your<br /><span class="hive-color-word"><i class="hive-blue">h</i><i class="hive-white">i</i><i class="hive-mixed">v</i><i class="hive-red">e</i>.</span></h1><p>Select a progression path to get started.</p></section><section class="progression-content page-wrap section-space"><div class="progression-grid">${progressionHives.map(progressionCard).join('')}</div></section>`;
+}
+
+function beesPage() {
+  return `<section class="subpage-hero page-wrap"><span class="eyebrow">Directory / Hive biology</span><h1>Meet the<br /><span>bees.</span></h1><p>Explore every bee by rarity and learn what makes each one useful.</p></section><section class="bee-directory page-wrap section-space"><div class="bee-rarity-grid">${beeRarities.map(beeRarityCard).join('')}</div></section>`;
+}
+
+function beeRarityPage(raritySlug) {
+  const rarity = beeRarities.find((item) => item.slug === raritySlug);
+  if (!rarity) return beesPage();
+  const bees = beesByRarity[raritySlug];
+  return `<section class="subpage-hero page-wrap"><a class="back-link" href="/bees">${icon('arrow-up-right', 15)} Back to bee rarities</a><span class="eyebrow">Bee directory / ${rarity.name}</span><h1>${rarity.name}<br /><span>bees.</span></h1><p>${rarity.description}</p></section><section class="bee-listing page-wrap section-space"><div class="bee-listing-meta"><span>${bees.length.toString().padStart(2, '0')} bees</span><span>Icons and summaries sourced from the Bee Swarm Simulator Wiki.</span></div><div class="bee-grid">${bees.map(beeCard).join('')}</div></section>`;
 }
 
 function aboutPage() {
@@ -172,6 +184,7 @@ function bindGlobalInteractions() {
 
 const detailSlug = path.startsWith('/macros/') ? path.split('/')[2] : null;
 const detailMacro = detailSlug ? macros.find((macro) => macro.slug === detailSlug) : null;
-shell(detailMacro ? macroDetail(detailMacro) : path === '/macros' || path.startsWith('/macros/') ? macroDirectory() : path === '/explore' ? explorePage() : path === '/progression' ? progressionPage() : path === '/about' ? aboutPage() : homePage());
+const beeRaritySlug = path.startsWith('/bees/') ? path.split('/')[2] : null;
+shell(detailMacro ? macroDetail(detailMacro) : path === '/macros' || path.startsWith('/macros/') ? macroDirectory() : path === '/explore' ? explorePage() : path === '/progression' ? progressionPage() : path === '/bees' ? beesPage() : beeRaritySlug ? beeRarityPage(beeRaritySlug) : path === '/about' ? aboutPage() : homePage());
 if (detailMacro) document.querySelector('.detail-content')?.insertAdjacentHTML('beforeend', detailSupplement(detailMacro));
 CustomCursor();
