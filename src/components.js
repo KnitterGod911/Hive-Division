@@ -61,6 +61,13 @@ export function categoryCard(category, index) {
   </a>`;
 }
 
+export function progressionCard(hive, index) {
+  return `<a class="progression-card progression-card-${hive.color} tilt-card" href="${hive.href}" style="--delay: ${index * 55}ms" data-tilt>
+    <span class="progression-card-cover"><span class="progression-card-mark">${icon('hexagon', 58)}</span><span class="progression-card-index">0${index + 1}</span></span>
+    <span class="progression-card-footer"><strong>${hive.name}</strong>${icon('arrow-up-right', 17)}</span>
+  </a>`;
+}
+
 function mediaMarkup(macro, compact = false) {
   const fallback = `<span class="media-placeholder"><span>${icon('hexagon', compact ? 25 : 38)}</span><b>MEDIA COMING SOON</b><small>Add cover media in public/images/macros/${macro.slug}/</small></span>`;
   const image = macro.coverImage ? `<img class="macro-cover-image" src="${macro.coverImage}" alt="${macro.name} cover" loading="lazy" />` : fallback;

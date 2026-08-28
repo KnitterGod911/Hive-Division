@@ -13,5 +13,13 @@ export const footerLinks = [
   { label: 'Home', href: '/' },
   { label: 'Explore', href: '/explore' },
   { label: 'Macros', href: '/macros' },
+  { label: 'Progression Guide', href: '/progression' },
   { label: 'About', href: '/about' },
+];
+
+export const progressionHives = [
+  { name: 'Blue Hive', color: 'blue', href: '#blue-hive' },
+  { name: 'White Hive', color: 'white', href: '#white-hive' },
+  { name: 'Mixed Hive', color: 'mixed', href: '#mixed-hive' },
+  { name: 'Red Hive', color: 'red', href: '#red-hive' },
 ];

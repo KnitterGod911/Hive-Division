@@ -1,6 +1,6 @@
-import { categories } from './data.js';
+import { categories, progressionHives } from './data.js';
 import { macros } from './macros.js';
-import { header, footer, refreshIcons, searchBar, button, categoryCard, icon, macroCard, mediaMarkup, demoMediaMarkup } from './components.js';
+import { header, footer, refreshIcons, searchBar, button, categoryCard, progressionCard, icon, macroCard, mediaMarkup, demoMediaMarkup } from './components.js';
 import { CustomCursor } from './CustomCursor.js';
 import './styles.css';
 
@@ -8,7 +8,7 @@ const app = document.querySelector('#app');
 const path = window.location.pathname.replace(/\/$/, '') || '/';
 
 function shell(content) {
-  const activePath = path.startsWith('/macros') ? '/macros' : path === '/explore' ? '/explore' : path === '/about' ? '/about' : '/';
+  const activePath = path.startsWith('/macros') ? '/macros' : path === '/explore' ? '/explore' : path === '/progression' ? '/progression' : path === '/about' ? '/about' : '/';
   app.innerHTML = `${header(activePath)}<main>${content}</main>${footer()}`;
   bindGlobalInteractions();
   bindTiltCards();
@@ -39,6 +39,10 @@ function homePage() {
 function explorePage() {
   return `<section class="subpage-hero page-wrap"><span class="eyebrow">Directory / Foundation phase</span><h1>Explore <span>Hive Division.</span></h1><p>Everything you need, organized in one place.</p></section>
   <section class="explore-content page-wrap section-space"><div class="directory-intro"><span>01</span><p>A clear home for the systems, references, and tools that make a hive run. Every category below is a placeholder for what is coming next.</p></div><div class="category-grid category-grid-wide">${categories.map(categoryCard).join('')}</div></section>`;
+}
+
+function progressionPage() {
+  return `<section class="subpage-hero page-wrap"><span class="eyebrow">Guide / Hive direction</span><h1>Choose your<br /><span>hive.</span></h1><p>Select a progression path to get started.</p></section><section class="progression-content page-wrap section-space"><div class="progression-grid">${progressionHives.map(progressionCard).join('')}</div></section>`;
 }
 
 function aboutPage() {
@@ -168,6 +172,6 @@ function bindGlobalInteractions() {
 
 const detailSlug = path.startsWith('/macros/') ? path.split('/')[2] : null;
 const detailMacro = detailSlug ? macros.find((macro) => macro.slug === detailSlug) : null;
-shell(detailMacro ? macroDetail(detailMacro) : path === '/macros' || path.startsWith('/macros/') ? macroDirectory() : path === '/explore' ? explorePage() : path === '/about' ? aboutPage() : homePage());
+shell(detailMacro ? macroDetail(detailMacro) : path === '/macros' || path.startsWith('/macros/') ? macroDirectory() : path === '/explore' ? explorePage() : path === '/progression' ? progressionPage() : path === '/about' ? aboutPage() : homePage());
 if (detailMacro) document.querySelector('.detail-content')?.insertAdjacentHTML('beforeend', detailSupplement(detailMacro));
 CustomCursor();
