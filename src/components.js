@@ -64,7 +64,7 @@ export function categoryCard(category, index) {
 export function progressionCard(hive, index) {
   const equipment = [...hive.tools, ...hive.gear];
   return `<a class="progression-card progression-card-${hive.color} tilt-card" href="${hive.href}" style="--delay: ${index * 55}ms" data-tilt>
-    <span class="progression-card-cover"><span class="progression-card-mark"><img class="progression-card-icon" src="${hive.icon}" alt="${hive.name.replace('Hive', 'Mask')}" loading="lazy" /></span><span class="progression-bees" aria-hidden="true">${Array.from({ length: 6 }, (_, beeIndex) => `<img src="${hive.bees[beeIndex % hive.bees.length]}" alt="" style="--bee-index: ${beeIndex}" />`).join('')}</span><span class="progression-equipment" aria-hidden="true">${equipment.map((item, equipmentIndex) => `<img src="${item.image}" alt="" style="--equipment-index: ${equipmentIndex}" />`).join('')}</span><span class="progression-card-index">0${index + 1}</span></span>
+    <span class="progression-card-cover"><span class="progression-card-mark"><img class="progression-card-icon" src="${hive.icon}" alt="${hive.name.replace('Hive', 'Mask')}" loading="lazy" decoding="async" /></span><span class="progression-bees" aria-hidden="true">${Array.from({ length: 6 }, (_, beeIndex) => `<img src="${hive.bees[beeIndex % hive.bees.length]}" alt="" loading="lazy" decoding="async" style="--bee-index: ${beeIndex}" />`).join('')}</span><span class="progression-equipment" aria-hidden="true">${equipment.map((item, equipmentIndex) => `<img src="${item.image}" alt="" loading="lazy" decoding="async" style="--equipment-index: ${equipmentIndex}" />`).join('')}</span><span class="progression-card-index">0${index + 1}</span></span>
     <span class="progression-card-footer"><strong>${hive.name}</strong>${icon('arrow-up-right', 17)}</span>
   </a>`;
 }
@@ -74,11 +74,11 @@ export function beeRarityCard(rarity, index) {
 }
 
 export function beeCard(beeData, index) {
-  return `<a class="bee-card bee-card-${beeData.color} tilt-card" href="/bees/${beeData.rarity}/${beeData.slug}" style="--delay: ${index * 40}ms" data-tilt><div class="bee-card-image"><img src="${beeData.image}" alt="${beeData.name}" loading="lazy" /></div><div class="bee-card-info"><h3>${beeData.name}</h3><p>${beeData.description}</p><span class="bee-card-link">View bee details ${icon('arrow-up-right', 14)}</span></div></a>`;
+  return `<a class="bee-card bee-card-${beeData.color} tilt-card" href="/bees/${beeData.rarity}/${beeData.slug}" style="--delay: ${index * 40}ms" data-tilt><div class="bee-card-image"><img src="${beeData.image}" alt="${beeData.name}" loading="lazy" decoding="async" /></div><div class="bee-card-info"><h3>${beeData.name}</h3><p>${beeData.description}</p><span class="bee-card-link">View bee details ${icon('arrow-up-right', 14)}</span></div></a>`;
 }
 
 export function enemyCard(enemyData, index) {
-  return `<a class="bee-card enemy-card enemy-card-${enemyData.type === 'Boss' || enemyData.type === 'Event boss' ? 'boss' : 'standard'} tilt-card" href="/enemies/${enemyData.slug}" style="--delay: ${index * 40}ms" data-tilt><div class="bee-card-image"><img src="${enemyData.image}" alt="${enemyData.name}" loading="lazy" /></div><div class="bee-card-info"><span class="enemy-type">${enemyData.type}</span><h3>${enemyData.name}</h3><p>${enemyData.description}</p><span class="bee-card-link">View enemy details ${icon('arrow-up-right', 14)}</span></div></a>`;
+  return `<a class="bee-card enemy-card enemy-card-${enemyData.type === 'Boss' || enemyData.type === 'Event boss' ? 'boss' : 'standard'} tilt-card" href="/mobs/${enemyData.slug}" style="--delay: ${index * 40}ms" data-tilt><div class="bee-card-image"><img src="${enemyData.image}" alt="${enemyData.name}" loading="lazy" decoding="async" /></div><div class="bee-card-info"><span class="enemy-type">${enemyData.type}</span><h3>${enemyData.name}</h3><p>${enemyData.description}</p><span class="bee-card-link">View mob details ${icon('arrow-up-right', 14)}</span></div></a>`;
 }
 
 function mediaMarkup(macro, compact = false) {
