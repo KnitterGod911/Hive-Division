@@ -2,7 +2,7 @@
   "name": "hive-division",
   "private": true,
   "version": "0.1.0",
-  "homepage": "https://knittergod911.github.io/Hive-Division/",
+  "homepage": "http://localhost:5174/",
   "type": "module",
   "scripts": {
     "dev": "vite",
