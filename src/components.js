@@ -74,7 +74,7 @@ export function beeRarityCard(rarity, index) {
 }
 
 export function beeCard(beeData, index) {
-  return `<article class="bee-card bee-card-${beeData.color} tilt-card" style="--delay: ${index * 40}ms" data-tilt><div class="bee-card-image"><img src="${beeData.image}" alt="${beeData.name}" loading="lazy" /></div><div class="bee-card-info"><h3>${beeData.name}</h3><p>${beeData.description}</p></div></article>`;
+  return `<a class="bee-card bee-card-${beeData.color} tilt-card" href="/bees/${beeData.rarity}/${beeData.slug}" style="--delay: ${index * 40}ms" data-tilt><div class="bee-card-image"><img src="${beeData.image}" alt="${beeData.name}" loading="lazy" /></div><div class="bee-card-info"><h3>${beeData.name}</h3><p>${beeData.description}</p><span class="bee-card-link">View bee details ${icon('arrow-up-right', 14)}</span></div></a>`;
 }
 
 function mediaMarkup(macro, compact = false) {

@@ -162,3 +162,36 @@ h1 span, h2 em { color: var(--gold); font-style: normal; }
 @media (max-width: 850px) { .bee-rarity-grid { grid-template-columns: repeat(3, 1fr); }.bee-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 620px) { .bee-rarity-grid, .bee-grid { grid-template-columns: 1fr; }.bee-rarity-card { min-height: 210px; }.bee-listing-meta { display: block; line-height: 1.8; }.bee-listing-meta span { display: block; }.bee-card-image { height: 200px; } }
 .bee-rarity-event { --rarity-color: #90ee90; color: #102214; }.bee-card-image { background: transparent; }.bee-card-event { --bee-color: #90ee90; color: #102214; }.bee-card-event .bee-card-info { color: var(--text); }
+
+.bee-card { min-height: 350px; }
+.bee-card-image { flex: 0 0 200px; height: 200px; position: relative; z-index: 1; }
+.bee-card-image img { max-width: 100%; max-height: 100%; }
+.bee-card-info { position: relative; z-index: 2; }
+.bee-card-link, .wiki-source { display: inline-flex; align-items: center; gap: 6px; color: var(--gold); font: 10px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .06em; }
+.bee-card-link { margin-top: 16px; }
+.bee-detail-hero { padding-top: 38px; padding-bottom: 72px; }
+.bee-detail-grid { display: grid; grid-template-columns: minmax(280px, .8fr) minmax(0, 1fr); gap: 65px; align-items: center; }
+.bee-detail-image { min-height: 390px; display: grid; place-items: center; padding: 45px; border: 1px solid rgba(255,255,255,.15); border-radius: 7px; background: var(--bee-color); }
+.bee-detail-image img { width: 100%; height: 100%; max-height: 300px; object-fit: contain; filter: drop-shadow(0 18px 15px rgba(0,0,0,.28)); }
+.bee-detail-identity h1 { margin: 16px 0 13px; font-size: clamp(52px, 7vw, 90px); }
+.bee-detail-identity > p { max-width: 570px; color: var(--muted); font-size: 15px; line-height: 1.8; }
+.wiki-source { margin-top: 12px; }
+.bee-detail-content { padding-top: 0; }
+.bee-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.bee-info-panel { min-height: 220px; padding: 28px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); }
+.bee-info-panel h2 { margin: 18px 0 12px; font: 500 30px/1.1 'Space Grotesk', sans-serif; }
+.bee-info-panel p { color: var(--muted); font-size: 12px; line-height: 1.7; }
+.token-list { display: grid; gap: 13px; margin-top: 20px; }
+.token-list div { display: flex; align-items: start; gap: 10px; color: #c6c8bf; font-size: 12px; }
+.token-list svg { flex: 0 0 auto; color: var(--gold); }
+.gifted-order { display: grid; gap: 28px; margin-top: 75px; padding-top: 45px; border-top: 1px solid var(--line); }
+.gifted-order h2 { margin: 14px 0 7px; font: 500 34px 'Space Grotesk', sans-serif; }
+.gifted-order p { margin: 0; color: var(--muted); font-size: 12px; }
+.gifted-order-track { min-height: 150px; display: flex; align-items: center; justify-content: center; gap: 18px; padding: 20px; border: 1px dashed rgba(242,185,55,.3); background: rgba(242,185,55,.03); }
+.order-empty { color: var(--muted); font: 11px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .06em; text-align: center; }
+.order-bee { display: grid; justify-items: center; gap: 5px; min-width: 100px; }
+.order-bee img { width: 70px; height: 70px; object-fit: contain; }
+.order-bee strong { font-size: 12px; }
+.order-bee small { color: var(--muted); font: 9px 'DM Mono', monospace; text-transform: uppercase; }
+.order-arrow { color: var(--gold); transform: rotate(45deg); }
+@media (max-width: 620px) { .bee-detail-grid, .bee-info-grid { grid-template-columns: 1fr; gap: 25px; }.bee-detail-image { min-height: 280px; }.bee-detail-identity h1 { font-size: 55px; }.gifted-order-track { overflow-x: auto; justify-content: flex-start; }.order-empty { min-width: 240px; } }

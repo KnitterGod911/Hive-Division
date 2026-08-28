@@ -68,3 +68,29 @@ export const beesByRarity = {
     bee('Windy Bee', 'event', '8/85/Windy_Bee.png/revision/latest?cb=20230415210459', 'An ethereal bee as powerful and unpredictable as the weather.'),
   ],
 };
+
+const tokenDetails = {
+  'Basic Bee': ['No ability token'], 'Bomber Bee': ['Bomb: collects pollen from nearby flowers'], 'Brave Bee': ['Red Boost: increases red pollen'], 'Hasty Bee': ['Haste: increases movement speed'], 'Looker Bee': ['Focus: increases critical chance'], 'Rad Bee': ['Red Boost: increases red pollen'], 'Rascal Bee': ['Red Bomb: collects red pollen'], 'Stubborn Bee': ['Token Link: links nearby tokens'],
+  'Bubble Bee': ['Bubble: collects pollen from nearby flowers'], 'Bucko Bee': ['Blue Boost: increases blue pollen'], 'Bumble Bee': ['Blue Boost: increases blue pollen'], 'Cool Bee': ['Blue Boost: increases blue pollen'], 'Fire Bee': ['Flame: burns nearby flowers for red pollen'], 'Frosty Bee': ['Blue Bomb: collects blue pollen'], 'Honey Bee': ['Honey: converts pollen into honey'], 'Rage Bee': ['Rage: increases bee attack'], 'Riley Bee': ['Red Boost: increases red pollen'], 'Shocked Bee': ['Haste: increases movement speed'],
+  'Baby Bee': ['Baby Love: increases loot luck'], 'Carpenter Bee': ['Mark: increases pollen from marked flowers'], 'Demon Bee': ['Red Bomb: collects red pollen'], 'Diamond Bee': ['Honey: converts pollen into honey'], 'Lion Bee': ['Token Link: links nearby tokens'], 'Music Bee': ['Melody: increases critical chance', 'Focus: increases critical chance'], 'Ninja Bee': ['Haste: increases movement speed'], 'Shy Bee': ['Red Boost: increases red pollen'],
+  'Buoyant Bee': ['Balloon: stores pollen and increases capacity'], 'Fuzzy Bee': ['Pollen Haze: pollinates nearby flowers'], 'Precise Bee': ['Precision: increases critical power', 'Target Practice: creates precise marks'], 'Spicy Bee': ['Flame Fuel: powers flames', 'Inferno: creates a field of flames'], 'Tadpole Bee': ['Bubble: collects pollen', 'Frog: summons a pollen-collecting frog'], 'Vector Bee': ['Triangulate: gathers from three marked flowers'],
+  'Bear Bee': ['Bear Morph: transforms the player into a bear'], 'Cobalt Bee': ['Blue Pulse: collects blue pollen and boosts blue pollen'], 'Crimson Bee': ['Red Pulse: collects red pollen and boosts red pollen'], 'Digital Bee': ['Code Mark: copies and amplifies enemy abilities'], 'Festive Bee': ['Festive Gift: grants a random gift effect'], 'Gummy Bee': ['Goo: covers flowers and grants bonus honey'], 'Photon Bee': ['Beamstorm: fires a beam that collects pollen'], 'Puppy Bee': ['Fetch: sends the bee to fetch a tennis ball'], 'Tabby Bee': ['Scratch: collects pollen in a cone', 'Tabby Love: increases Tabby Bee pollen'], 'Vicious Bee': ['Impale: summons spikes that damage enemies'], 'Windy Bee': ['Tornado: gathers pollen and grants Wind Blessing'],
+};
+
+const giftedBonuses = {
+  'Basic Bee': 'x1.2 pollen', 'Bomber Bee': '+15% bomb pollen', 'Brave Bee': '+5% bee attack', 'Hasty Bee': '+1 player movespeed', 'Looker Bee': '+25% critical power', 'Rad Bee': '+15% red pollen', 'Rascal Bee': '+15% red bomb pollen', 'Stubborn Bee': '+20% token duration',
+  'Bubble Bee': '+15% bubble pollen', 'Bucko Bee': '+20% blue pollen', 'Bumble Bee': '+15% capacity', 'Cool Bee': '+15% blue pollen', 'Fire Bee': '+15% flame pollen', 'Frosty Bee': '+15% blue pollen', 'Honey Bee': '+25% honey from tokens', 'Rage Bee': '+15% bee attack', 'Riley Bee': '+20% red pollen', 'Shocked Bee': '+1 player movespeed',
+  'Baby Bee': '+25% Baby Love luck', 'Carpenter Bee': '+25% mark duration', 'Demon Bee': '+15% red pollen', 'Diamond Bee': '+15% capacity', 'Lion Bee': '+5% bee attack', 'Music Bee': '+25% melody duration', 'Ninja Bee': '+15% blue pollen', 'Shy Bee': '+15% red pollen',
+  'Buoyant Bee': '+15% balloon capacity', 'Fuzzy Bee': '+15% pollen', 'Precise Bee': '+15% super-crit chance', 'Spicy Bee': '+15% flame duration', 'Tadpole Bee': '+15% bubble duration', 'Vector Bee': '+15% mark duration',
+  'Bear Bee': '+10% all pollen', 'Cobalt Bee': '+15% blue pollen', 'Crimson Bee': '+15% red pollen', 'Digital Bee': '+1% super-crit chance', 'Festive Bee': '+15% convert rate', 'Gummy Bee': '+1.5x goo conversion', 'Photon Bee': '+5% instant conversion', 'Puppy Bee': '+20% bond from treats', 'Tabby Bee': '+50% Tabby Love pollen', 'Vicious Bee': '+15% bee attack', 'Windy Bee': '+15% white pollen',
+};
+
+export const giftedEventBeeOrder = [];
+
+Object.entries(beesByRarity).forEach(([rarity, bees]) => bees.forEach((beeData) => {
+  beeData.rarity = rarity;
+  beeData.slug = beeData.name.toLowerCase().replace(/ bee$/, '').replace(/[^a-z0-9]+/g, '-');
+  beeData.tokens = tokenDetails[beeData.name] || ['Ability token information is maintained on the BSS Wiki.'];
+  beeData.giftedBonus = giftedBonuses[beeData.name] || 'Gifted bonus information is maintained on the BSS Wiki.';
+  beeData.wikiUrl = `https://bee-swarm-simulator.fandom.com/wiki/${beeData.name.replace(/ /g, '_')}`;
+}));

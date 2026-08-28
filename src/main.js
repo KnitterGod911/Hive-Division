@@ -1,5 +1,5 @@
 import { categories, progressionHives } from './data.js';
-import { beeRarities, beesByRarity } from './bees.js';
+import { beeRarities, beesByRarity, giftedEventBeeOrder } from './bees.js';
 import { macros } from './macros.js';
 import { header, footer, refreshIcons, searchBar, button, categoryCard, progressionCard, beeRarityCard, beeCard, icon, macroCard, mediaMarkup, demoMediaMarkup } from './components.js';
 import { CustomCursor } from './CustomCursor.js';
@@ -54,7 +54,12 @@ function beeRarityPage(raritySlug) {
   const rarity = beeRarities.find((item) => item.slug === raritySlug);
   if (!rarity) return beesPage();
   const bees = beesByRarity[raritySlug];
-  return `<section class="subpage-hero page-wrap"><a class="back-link" href="/bees">${icon('arrow-up-right', 15)} Back to bee rarities</a><span class="eyebrow">Bee directory / ${rarity.name}</span><h1>${rarity.name}<br /><span>bees.</span></h1><p>${rarity.description}</p></section><section class="bee-listing page-wrap section-space"><div class="bee-listing-meta"><span>${bees.length.toString().padStart(2, '0')} bees</span><span>Icons and summaries sourced from the Bee Swarm Simulator Wiki.</span></div><div class="bee-grid">${bees.map(beeCard).join('')}</div></section>`;
+  const order = raritySlug === 'event' ? `<section class="gifted-order"><div><span class="detail-label">Gifted event bee order</span><h2>Build your gifting path.</h2><p>Choose a rarity for each slot, then add the order you want to follow.</p></div><div class="gifted-order-track">${giftedEventBeeOrder.length ? giftedEventBeeOrder.map((beeData, index) => `${index ? `<span class="order-arrow">${icon('arrow-up-right', 18)}</span>` : ''}<a class="order-bee" href="/bees/${beeData.rarity}/${beeData.slug}"><img src="${beeData.image}" alt="${beeData.name}" /><strong>${beeData.name}</strong><small>${beeData.rarity}</small></a>`).join('') : '<div class="order-empty">Order slots are ready. Add the sequence when it is decided.</div>'}</div></section>` : '';
+  return `<section class="subpage-hero page-wrap"><a class="back-link" href="/bees">${icon('arrow-up-right', 15)} Back to bee rarities</a><span class="eyebrow">Bee directory / ${rarity.name}</span><h1>${rarity.name}<br /><span>bees.</span></h1><p>${rarity.description}</p></section><section class="bee-listing page-wrap section-space"><div class="bee-listing-meta"><span>${bees.length.toString().padStart(2, '0')} bees</span><span>Icons and summaries sourced from the Bee Swarm Simulator Wiki.</span></div><div class="bee-grid">${bees.map(beeCard).join('')}</div>${order}</section>`;
+}
+
+function beeDetailPage(beeData) {
+  return `<section class="bee-detail-hero page-wrap"><a class="back-link" href="/bees/${beeData.rarity}">${icon('arrow-up-right', 15)} Back to ${beeData.rarity} bees</a><div class="bee-detail-grid"><div class="bee-detail-image bee-card-${beeData.color}"><img src="${beeData.image}" alt="${beeData.name}" /></div><div class="bee-detail-identity"><span class="eyebrow">Bee directory / ${beeData.rarity}</span><h1>${beeData.name}</h1><p>${beeData.description}</p><a class="wiki-source" href="${beeData.wikiUrl}" target="_blank" rel="noreferrer">Open BSS Wiki source ${icon('external-link', 14)}</a></div></div></section><section class="bee-detail-content page-wrap section-space"><div class="bee-info-grid"><section class="bee-info-panel"><span class="detail-label">Gifted bonus</span><h2>${beeData.giftedBonus}</h2><p>The gifted bonus applies when this bee is gifted. Event bees do not have favorite treats.</p></section><section class="bee-info-panel"><span class="detail-label">Ability tokens</span><div class="token-list">${beeData.tokens.map((token) => `<div>${icon('hexagon', 14)}<span>${token}</span></div>`).join('')}</div></section></div></section>`;
 }
 
 function aboutPage() {
@@ -185,6 +190,8 @@ function bindGlobalInteractions() {
 const detailSlug = path.startsWith('/macros/') ? path.split('/')[2] : null;
 const detailMacro = detailSlug ? macros.find((macro) => macro.slug === detailSlug) : null;
 const beeRaritySlug = path.startsWith('/bees/') ? path.split('/')[2] : null;
-shell(detailMacro ? macroDetail(detailMacro) : path === '/macros' || path.startsWith('/macros/') ? macroDirectory() : path === '/explore' ? explorePage() : path === '/progression' ? progressionPage() : path === '/bees' ? beesPage() : beeRaritySlug ? beeRarityPage(beeRaritySlug) : path === '/about' ? aboutPage() : homePage());
+const beeSlug = path.startsWith('/bees/') ? path.split('/')[3] : null;
+const detailBee = beeSlug ? Object.values(beesByRarity).flat().find((beeData) => beeData.rarity === beeRaritySlug && beeData.slug === beeSlug) : null;
+shell(detailMacro ? macroDetail(detailMacro) : detailBee ? beeDetailPage(detailBee) : path === '/macros' || path.startsWith('/macros/') ? macroDirectory() : path === '/explore' ? explorePage() : path === '/progression' ? progressionPage() : path === '/bees' ? beesPage() : beeRaritySlug ? beeRarityPage(beeRaritySlug) : path === '/about' ? aboutPage() : homePage());
 if (detailMacro) document.querySelector('.detail-content')?.insertAdjacentHTML('beforeend', detailSupplement(detailMacro));
 CustomCursor();
