@@ -128,7 +128,7 @@ export const macros = [
     ratingFactors: { reliability: null, features: null, easeOfUse: null, updates: null, documentation: 1, compatibility: 3, communitySupport: null },
     status: 'Information limited', version: '', lastUpdated: '', lastVerified: '2026-08-27', platforms: ['Windows'],
     features: [], supportedFields: [], requirements: ['Windows', 'Bee Swarm Simulator'], limitations: ['Public project documentation was unavailable at verification time.'], knownIssues: [],
-    coverImage: '/images/macros/fuzzy/cover.png', coverVideo: '', gallery: [], media: [],
+    coverImage: '/images/macros/fuzzy/face-decal.svg', coverVideo: '', gallery: [], media: [],
     hoverPreview: { type: 'video', sourceUrl: 'https://www.youtube.com/watch?v=t2undUAYqR0', sourceName: 'YouTube', title: 'Fuzzy AI Gather v2.3', creator: 'Fuzzy Macro', demonstratesMacro: true },
     downloads: [{ label: 'GitHub Repository', url: 'https://github.com/grantthebawse/FuzzyMacro', type: 'github-repository', platform: 'Windows', verified: true, description: 'Public project repository and available source location.' }],
     links: [{ label: 'GitHub Repository', url: 'https://github.com/grantthebawse/FuzzyMacro', type: 'github-repository' }],
