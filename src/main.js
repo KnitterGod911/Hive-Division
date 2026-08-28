@@ -42,7 +42,7 @@ function explorePage() {
 }
 
 function progressionPage() {
-  return `<section class="subpage-hero page-wrap"><span class="eyebrow">Guide / Hive direction</span><h1>Choose your<br /><span>hive.</span></h1><p>Select a progression path to get started.</p></section><section class="progression-content page-wrap section-space"><div class="progression-grid">${progressionHives.map(progressionCard).join('')}</div></section>`;
+  return `<section class="subpage-hero page-wrap"><span class="eyebrow">Guide / Hive direction</span><h1>Choose your<br /><span class="hive-color-word"><i class="hive-blue">h</i><i class="hive-white">i</i><i class="hive-mixed">v</i><i class="hive-red">e</i>.</span></h1><p>Select a progression path to get started.</p></section><section class="progression-content page-wrap section-space"><div class="progression-grid">${progressionHives.map(progressionCard).join('')}</div></section>`;
 }
 
 function aboutPage() {
