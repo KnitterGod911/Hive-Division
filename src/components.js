@@ -8,13 +8,7 @@ export function icon(name, size = 18) {
 }
 
 export function refreshIcons() {
-  try {
-    console.log('refreshIcons() called, creating icons...');
-    createIcons({ icons: iconSet, attrs: { 'stroke-width': 1.8 } });
-    console.log('createIcons completed successfully');
-  } catch (error) {
-    console.error('Error in refreshIcons/createIcons:', error);
-  }
+  createIcons({ icons: iconSet, attrs: { 'stroke-width': 1.8 } });
 }
 
 export function header(activePath) {
