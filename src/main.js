@@ -225,5 +225,9 @@ if (detailMacro) document.querySelector('.detail-content')?.insertAdjacentHTML('
 CustomCursor();
 
 if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
-  window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').then((registration) => registration.update()).catch(() => {}));
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      registrations.forEach((registration) => registration.unregister());
+    }).catch(() => {});
+  });
 }
