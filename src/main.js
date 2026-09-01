@@ -8,6 +8,14 @@ import './styles.css';
 
 const app = document.querySelector('#app');
 const path = window.location.pathname.replace(/\/$/, '') || '/';
+const detailSlug = path.startsWith('/macros/') ? path.split('/')[2] : null;
+const detailMacro = detailSlug ? macros.find((macro) => macro.slug === detailSlug) : null;
+const beeRaritySlug = path.startsWith('/bees/') ? path.split('/')[2] : null;
+const beeSlug = path.startsWith('/bees/') ? path.split('/')[3] : null;
+const detailBee = beeSlug ? Object.values(beesByRarity).flat().find((beeData) => beeData.rarity === beeRaritySlug && beeData.slug === beeSlug) : null;
+const enemySlug = path.startsWith('/enemies/') ? path.split('/')[2] : null;
+const mobSlug = path.startsWith('/mobs/') ? path.split('/')[2] : enemySlug;
+const detailEnemy = mobSlug ? enemyBySlug(mobSlug) : null;
 
 function shell(content) {
   const activePath = path.startsWith('/macros') ? '/macros' : path.startsWith('/bees') ? '/bees' : path.startsWith('/mobs') || path.startsWith('/enemies') ? '/mobs' : path === '/explore' ? '/explore' : path === '/progression' ? '/progression' : path === '/about' ? '/about' : '/';
@@ -212,14 +220,6 @@ function bindGlobalInteractions() {
   }));
 }
 
-const detailSlug = path.startsWith('/macros/') ? path.split('/')[2] : null;
-const detailMacro = detailSlug ? macros.find((macro) => macro.slug === detailSlug) : null;
-const beeRaritySlug = path.startsWith('/bees/') ? path.split('/')[2] : null;
-const beeSlug = path.startsWith('/bees/') ? path.split('/')[3] : null;
-const detailBee = beeSlug ? Object.values(beesByRarity).flat().find((beeData) => beeData.rarity === beeRaritySlug && beeData.slug === beeSlug) : null;
-const enemySlug = path.startsWith('/enemies/') ? path.split('/')[2] : null;
-const mobSlug = path.startsWith('/mobs/') ? path.split('/')[2] : enemySlug;
-const detailEnemy = mobSlug ? enemyBySlug(mobSlug) : null;
 shell(detailMacro ? macroDetail(detailMacro) : detailBee ? beeDetailPage(detailBee) : detailEnemy ? enemyDetailPage(detailEnemy) : path === '/macros' || path.startsWith('/macros/') ? macroDirectory() : path === '/explore' ? explorePage() : path === '/progression' ? progressionPage() : path === '/bees' ? beesPage() : path === '/mobs' || path === '/enemies' ? enemiesPage() : beeRaritySlug ? beeRarityPage(beeRaritySlug) : path === '/about' ? aboutPage() : homePage());
 if (detailMacro) document.querySelector('.detail-content')?.insertAdjacentHTML('beforeend', detailSupplement(detailMacro));
 CustomCursor();

@@ -1,7 +1,7 @@
 {
-  "name": "Hive Division",
+  "name": "Hive Division - Bee Swarm Simulator Resource Hub",
   "short_name": "Hive Division",
-  "description": "The ultimate Bee Swarm Simulator resource hub.",
+  "description": "The ultimate Bee Swarm Simulator resource hub. Community-built guides, macros, and tools.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -20,6 +20,40 @@
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/icons/hive-division-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["productivity", "reference"],
+  "shortcuts": [
+    {
+      "name": "Macros",
+      "short_name": "Macros",
+      "description": "Browse macro projects",
+      "url": "/macros",
+      "icons": [
+        {
+          "src": "/icons/hive-division-192.svg",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Bees",
+      "short_name": "Bees",
+      "description": "Explore all bees",
+      "url": "/bees",
+      "icons": [
+        {
+          "src": "/icons/hive-division-192.svg",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }
