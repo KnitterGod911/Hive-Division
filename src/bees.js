@@ -1,5 +1,12 @@
 const wikiImage = (path) => `https://static.wikia.nocookie.net/bee-swarm-simulator/images/${path}`;
 
+const beeThemeColors = {
+  colorless: { base: '#b7bab2', soft: 'rgba(183, 186, 178, 0.22)', accent: '#f2f5ec' },
+  red: { base: '#d45448', soft: 'rgba(212, 84, 72, 0.22)', accent: '#ffd9c9' },
+  blue: { base: '#2d7cd1', soft: 'rgba(45, 124, 209, 0.22)', accent: '#dff4ff' },
+  event: { base: '#79c671', soft: 'rgba(121, 198, 113, 0.22)', accent: '#ebffe4' },
+};
+
 const bee = (name, color, image, description) => ({ name, color, image: wikiImage(image), description });
 
 export const beeRarities = [
@@ -169,5 +176,8 @@ Object.entries(beesByRarity).forEach(([rarity, bees]) => bees.forEach((beeData) 
   beeData.obtainment = obtainmentDetails[beeData.name] || null;
   beeData.giftedAbility = giftedAbilities[beeData.name] || 'Gifted ability information is maintained on the BSS Wiki.';
   beeData.giftedSpecialAbility = giftedSpecialAbilities[beeData.name] || null;
+  beeData.theme = beeThemeColors[beeData.color] || beeThemeColors.colorless;
+  beeData.summary = beeData.ability || beeData.description;
+  beeData.description = beeData.ability || beeData.description;
   beeData.wikiUrl = `https://bee-swarm-simulator.fandom.com/wiki/${beeData.name.replace(/ /g, '_')}`;
 }));
