@@ -2,7 +2,7 @@
   "name": "hive-division",
   "private": true,
   "version": "0.1.0",
-  "homepage": "http://localhost:5174/",
+  "homepage": "http://localhost:5173/",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -7,14 +7,51 @@ import { CustomCursor } from './CustomCursor.js';
 import './styles.css';
 
 const app = document.querySelector('#app');
+console.log('app element found:', app);
+if (!app) {
+  console.error('ERROR: #app element not found in DOM!');
+}
 const path = window.location.pathname.replace(/\/$/, '') || '/';
 
+console.log('Main.js loaded, path:', path);
+
 function shell(content) {
-  const activePath = path.startsWith('/macros') ? '/macros' : path.startsWith('/bees') ? '/bees' : path.startsWith('/mobs') || path.startsWith('/enemies') ? '/mobs' : path === '/explore' ? '/explore' : path === '/progression' ? '/progression' : path === '/about' ? '/about' : '/';
-  app.innerHTML = `${header(activePath)}<main>${content}</main>${footer()}`;
-  bindGlobalInteractions();
-  bindTiltCards();
-  refreshIcons();
+  console.log('shell() called');
+  if (!app) {
+    console.error('ERROR: app element not found');
+    return;
+  }
+  
+  // Test: Just put plain text first to see if it renders
+  app.innerHTML = `<div style="padding: 20px; color: white; font-size: 18px;">
+    <h1>TEST: App is rendering</h1>
+    <p>Content length: ${content?.length}</p>
+    <p>Path: ${path}</p>
+  </div>`;
+  
+  // Now try to build the actual page
+  try {
+    const activePath = path.startsWith('/macros') ? '/macros' : path.startsWith('/bees') ? '/bees' : path.startsWith('/mobs') || path.startsWith('/enemies') ? '/mobs' : path === '/explore' ? '/explore' : path === '/progression' ? '/progression' : path === '/about' ? '/about' : '/';
+    
+    const headerHtml = header(activePath);
+    const footerHtml = footer();
+    const fullHtml = `${headerHtml}<main>${content}</main>${footerHtml}`;
+    
+    app.innerHTML = fullHtml;
+    console.log('Main content rendered successfully');
+    
+    bindGlobalInteractions();
+    bindTiltCards();
+    refreshIcons();
+    
+  } catch (error) {
+    console.error('Error rendering:', error);
+    app.innerHTML = `<div style="padding: 40px; color: #ff6b6b; font-size: 16px; background: #1a1a1a;">
+      <h2>Error Rendering Page</h2>
+      <p>${error.message}</p>
+      <pre>${error.stack}</pre>
+    </div>`;
+  }
 }
 
 function homePage() {
@@ -206,9 +243,15 @@ const detailBee = beeSlug ? Object.values(beesByRarity).flat().find((beeData) =>
 const enemySlug = path.startsWith('/enemies/') ? path.split('/')[2] : null;
 const mobSlug = path.startsWith('/mobs/') ? path.split('/')[2] : enemySlug;
 const detailEnemy = mobSlug ? enemyBySlug(mobSlug) : null;
+
+console.log('About to call shell() with page type determination');
 shell(detailMacro ? macroDetail(detailMacro) : detailBee ? beeDetailPage(detailBee) : detailEnemy ? enemyDetailPage(detailEnemy) : path === '/macros' || path.startsWith('/macros/') ? macroDirectory() : path === '/explore' ? explorePage() : path === '/progression' ? progressionPage() : path === '/bees' ? beesPage() : path === '/mobs' || path === '/enemies' ? enemiesPage() : beeRaritySlug ? beeRarityPage(beeRaritySlug) : path === '/about' ? aboutPage() : homePage());
+
+console.log('After shell() call, about to check detailMacro');
 if (detailMacro) document.querySelector('.detail-content')?.insertAdjacentHTML('beforeend', detailSupplement(detailMacro));
 CustomCursor();
+
+console.log('Main.js execution complete');
 
 if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
   window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').then((registration) => registration.update()).catch(() => {}));
