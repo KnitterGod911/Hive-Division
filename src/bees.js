@@ -163,8 +163,41 @@ const giftedAbilities = {
 };
 
 const giftedSpecialAbilities = {
+  'Basic Bee': 'Gifted Basic Bee adds a larger pollen boost to all field collection, improving early hive output with a simple all-around gain.',
+  'Bomber Bee': 'Gifted Bomber Bee increases bomb impact and encourages stronger burst collection from nearby flowers.',
+  'Bubble Bee': 'Gifted Bubble Bee creates denser bubble trails and extends the duration of its blue pollen gathering support.',
   'Bear Bee': 'Gifted Bear Morph has a 20% chance to transform the player into a rare bear. Mother Bear gives x2.5 pollen and x1.5 bee-gather pollen; Science Bear grants +1 convert rate and +1% ability rate.',
   'Digital Bee': 'Gifted Digital Bee unlocks Map Corruption: it corrupts a random field for all players for 3 minutes, plus 15 seconds per bee level. Drives increase the corruption amount, up to 300.',
+  'Fire Bee': 'Gifted Fire Bee extends its flame effect, increasing the duration and reach of red pollen collection from nearby blooms.',
+  'Fuzzy Bee': 'Gifted Fuzzy Bee pollinates wider and creates more nearby bloom coverage, increasing the value of its field-pollination effect.',
+  'Photon Bee': 'Gifted Photon Bee creates a brighter, more intense light beam that sweeps wider and hits more flowers in a single pass.',
+  'Precise Bee': 'Gifted Precise Bee increases its precision burst and makes critical-focused collection sharper, rewarding careful field positioning.',
+  'Spicy Bee': 'Gifted Spicy Bee prolongs its flame burst and directly magnifies the red pollen and inferno effect across a broader area.',
+  'Tabby Bee': 'Gifted Tabby Bee strengthens its cone collection and makes its Tabby Love bond more efficient in longer farming runs.',
+  'Tadpole Bee': 'Gifted Tadpole Bee keeps its bubble or frog support active longer and improves the value of its blue gathering route.',
+  'Vicious Bee': 'Gifted Vicious Bee amplifies its piercing attack and improves the combat value of its impale-based battlefield control.',
+  'Windy Bee': 'Gifted Windy Bee lengthens its tornado and wind blessing effect, making field sweeping and pollen recovery more efficient.',
+};
+
+const beeBackgroundEffects = {
+  'Basic Bee': 'basic',
+  'Bomber Bee': 'bomb',
+  'Bubble Bee': 'bubble',
+  'Fire Bee': 'fire',
+  'Fuzzy Bee': 'fuzzy',
+  'Photon Bee': 'photon',
+  'Precise Bee': 'precise',
+  'Spicy Bee': 'fire',
+  'Tabby Bee': 'tabby',
+  'Tadpole Bee': 'bubble',
+  'Vicious Bee': 'vicious',
+  'Windy Bee': 'windy',
+  'Bear Bee': 'bear',
+  'Digital Bee': 'digital',
+  'Vector Bee': 'vector',
+  'Gummy Bee': 'gummy',
+  'Cobalt Bee': 'blue',
+  'Crimson Bee': 'red',
 };
 
 Object.entries(beesByRarity).forEach(([rarity, bees]) => bees.forEach((beeData) => {
@@ -179,5 +212,6 @@ Object.entries(beesByRarity).forEach(([rarity, bees]) => bees.forEach((beeData) 
   beeData.theme = beeThemeColors[beeData.color] || beeThemeColors.colorless;
   beeData.summary = beeData.ability || beeData.description;
   beeData.description = beeData.ability || beeData.description;
+  beeData.backgroundEffect = beeBackgroundEffects[beeData.name] || 'generic';
   beeData.wikiUrl = `https://bee-swarm-simulator.fandom.com/wiki/${beeData.name.replace(/ /g, '_')}`;
 }));
