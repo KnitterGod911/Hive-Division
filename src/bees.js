@@ -70,11 +70,11 @@ export const beesByRarity = {
 };
 
 const tokenDetails = {
-  'Basic Bee': ['No ability token'], 'Bomber Bee': ['Bomb: collects pollen from nearby flowers'], 'Brave Bee': ['Red Boost: increases red pollen'], 'Hasty Bee': ['Haste: increases movement speed'], 'Looker Bee': ['Focus: increases critical chance'], 'Rad Bee': ['Red Boost: increases red pollen'], 'Rascal Bee': ['Red Bomb: collects red pollen'], 'Stubborn Bee': ['Token Link: links nearby tokens'],
-  'Bubble Bee': ['Bubble: collects pollen from nearby flowers'], 'Bucko Bee': ['Blue Boost: increases blue pollen'], 'Bumble Bee': ['Blue Boost: increases blue pollen'], 'Cool Bee': ['Blue Boost: increases blue pollen'], 'Fire Bee': ['Flame: burns nearby flowers for red pollen'], 'Frosty Bee': ['Blue Bomb: collects blue pollen'], 'Honey Bee': ['Honey: converts pollen into honey'], 'Rage Bee': ['Rage: increases bee attack'], 'Riley Bee': ['Red Boost: increases red pollen'], 'Shocked Bee': ['Haste: increases movement speed'],
-  'Baby Bee': ['Baby Love: increases loot luck'], 'Carpenter Bee': ['Mark: increases pollen from marked flowers'], 'Demon Bee': ['Red Bomb: collects red pollen'], 'Diamond Bee': ['Honey: converts pollen into honey'], 'Lion Bee': ['Token Link: links nearby tokens'], 'Music Bee': ['Melody: increases critical chance', 'Focus: increases critical chance'], 'Ninja Bee': ['Haste: increases movement speed'], 'Shy Bee': ['Red Boost: increases red pollen'],
-  'Buoyant Bee': ['Balloon: stores pollen and increases capacity'], 'Fuzzy Bee': ['Pollen Haze: pollinates nearby flowers'], 'Precise Bee': ['Precision: increases critical power', 'Target Practice: creates precise marks'], 'Spicy Bee': ['Flame Fuel: powers flames', 'Inferno: creates a field of flames'], 'Tadpole Bee': ['Bubble: collects pollen', 'Frog: summons a pollen-collecting frog'], 'Vector Bee': ['Triangulate: gathers from three marked flowers'],
-  'Bear Bee': ['Bear Morph: transforms the player into a bear'], 'Cobalt Bee': ['Blue Pulse: collects blue pollen and boosts blue pollen'], 'Crimson Bee': ['Red Pulse: collects red pollen and boosts red pollen'], 'Digital Bee': ['Code Mark: copies and amplifies enemy abilities'], 'Festive Bee': ['Festive Gift: grants a random gift effect'], 'Gummy Bee': ['Goo: covers flowers and grants bonus honey'], 'Photon Bee': ['Beamstorm: fires a beam that collects pollen'], 'Puppy Bee': ['Fetch: sends the bee to fetch a tennis ball'], 'Tabby Bee': ['Scratch: collects pollen in a cone', 'Tabby Love: increases Tabby Bee pollen'], 'Vicious Bee': ['Impale: summons spikes that damage enemies'], 'Windy Bee': ['Tornado: gathers pollen and grants Wind Blessing'],
+  'Basic Bee': ['No ability token'], 'Bomber Bee': ['Bomb Token: Explodes when touched, collecting pollen from nearby flowers in a burst'], 'Brave Bee': ['Red Boost Token: Spawns a red orb that boosts red pollen collection when collected'], 'Hasty Bee': ['Haste Token: Grants temporary movement speed increase when touched'], 'Looker Bee': ['Focus Token: Increases critical chance significantly when collected'], 'Rad Bee': ['Red Boost Token: Red orb that increases red pollen output when collected'], 'Rascal Bee': ['Red Bomb Token: Explodes on touch, gathering red pollen from nearby flowers'], 'Stubborn Bee': ['Token Link: Extends the duration of nearby ability tokens when collected'],
+  'Bubble Bee': ['Bubble Token: Bubbles that float and collect blue pollen when touched'], 'Bucko Bee': ['Blue Boost Token: Blue orb that strengthens blue pollen collection when collected'], 'Bumble Bee': ['Blue Boost Token: Increases blue pollen when touched'], 'Cool Bee': ['Blue Boost Token: Spawns blue orb that boosts blue pollen when collected'], 'Fire Bee': ['Flame Token: Creates flames that burn flowers and collect red pollen from surrounding area'], 'Frosty Bee': ['Blue Bomb Token: Icy explosion that collects blue pollen when touched'], 'Honey Bee': ['Honey Token: When collected, converts a portion of nearby pollen into honey'], 'Rage Bee': ['Rage Token: Increases bee attack power temporarily when collected'], 'Riley Bee': ['Red Boost Token: Red orb that boosts red pollen output when collected'], 'Shocked Bee': ['Haste Token: Grants movement speed boost when touched'],
+  'Baby Bee': ['Baby Love Token: Increases loot luck and reward quality when collected'], 'Carpenter Bee': ['Mark Token: Places a mark on flowers; collecting from marked flowers gives bonus pollen'], 'Demon Bee': ['Red Bomb Token: Powerful red explosion that collects red pollen when touched'], 'Diamond Bee': ['Honey Token: Converts pollen to honey when collected', 'Blue Boost Token: Increases blue pollen output'], 'Lion Bee': ['Token Link: Connects nearby tokens together when collected'], 'Music Bee': ['Melody Token: Increases critical chance when collected', 'Focus Token: Further boosts critical power'], 'Ninja Bee': ['Haste Token: Grants significant movement speed increase when touched'], 'Shy Bee': ['Red Boost Token: Red orb that increases red pollen when collected'],
+  'Buoyant Bee': ['Balloon Token: Creates balloons that float and store pollen, increasing collection capacity'], 'Fuzzy Bee': ['Fuzzy Ball Token: Bounces around the field collecting pollen and pollinates nearby flowers'], 'Precise Bee': ['Precision Token: Builds precision stacks that increase critical power', 'Target Practice Token: Creates precise marks that reward accurate movement'], 'Spicy Bee': ['Flame Fuel Token: Powers up flame effects', 'Inferno Token: Creates a field of flames that spread red pollen collection'], 'Tadpole Bee': ['Bubble Token: Blue bubbles that collect pollen when touched', 'Frog Token: Spawns a small frog that hops around collecting pollen'], 'Vector Bee': ['Triangulate Token: Creates three connected marks; collecting between them gives massive bonus pollen'],
+  'Bear Bee': ['Bear Morph Token: Transforms the player into a bear form, changing movement and collection style'], 'Cobalt Bee': ['Blue Pulse Token: Sends out a blue pulse that collects blue pollen when touched', 'Blue Boost Token: Boosts blue pollen collection bonus'], 'Crimson Bee': ['Red Pulse Token: Sends out a red pulse that collects red pollen when touched', 'Red Boost Token: Boosts red pollen collection bonus'], 'Digital Bee': ['Code Mark Token: Copies and amplifies ability effects from enemies', 'Corruption Token: Corrupts the field with special effects'], 'Festive Bee': ['Festive Gift Token: Randomly grants special bonuses when collected'], 'Gummy Bee': ['Goo Token: Covers flowers with goo; touching goo-covered flowers gives bonus honey conversion'], 'Photon Bee': ['Beamstorm Token: Fires a laser beam that instantly collects pollen along its path'], 'Puppy Bee': ['Fetch Token: Puppy chases a ball and returns it; collecting the returned token grants a pollen boost'], 'Tabby Bee': ['Scratch Token: Scratches in a cone shape, collecting pollen in front', 'Tabby Love Token: Builds affection; higher affection increases Tabby Bee effectiveness'], 'Vicious Bee': ['Impale Token: Creates spikes that damage enemies and can penetrate multiple foes'], 'Windy Bee': ['Tornado Token: Creates a tornado that travels and collects pollen', 'Wind Blessing Token: Grants a blessing that improves collection efficiency'],
 };
 
 const giftedBonuses = {
@@ -134,49 +134,17 @@ const abilityDetails = {
 };
 
 const obtainmentDetails = {
-  'Basic Bee': 'Unlocked automatically with the starter hive and does not require any special step.',
-  'Bomber Bee': 'Obtained through regular early-game hive progression and standard bee hatching.',
-  'Brave Bee': 'Unlocked through normal early-game bee progression and egg hatches.',
-  'Hasty Bee': 'Obtained through the regular early bee progression track.',
-  'Looker Bee': 'Unlocked through the normal progression system and standard bee hatching.',
-  'Rad Bee': 'Obtained through regular red bee progression and hive egg hatches.',
-  'Rascal Bee': 'Unlocked through the red bee progression track and normal game progression.',
-  'Stubborn Bee': 'Obtained through the standard progression pool and general bee hatching.',
-  'Bubble Bee': 'Unlocked through standard blue bee progression and egg hatches.',
-  'Bucko Bee': 'Obtained through regular blue bee progression and standard hatching.',
-  'Bumble Bee': 'Unlocked in the normal blue bee progression system.',
-  'Cool Bee': 'Obtained through regular blue bee progression and standard hatching.',
-  'Fire Bee': 'Unlocked through the red progression path and normal hive hatching.',
-  'Frosty Bee': 'Obtained through the standard blue bee progression route.',
-  'Honey Bee': 'Unlocked through general progression and standard bee hatching.',
-  'Rage Bee': 'Obtained through the red bee progression track and hive progression.',
-  'Riley Bee': 'Unlocked through the regular red bee progression system.',
-  'Shocked Bee': 'Obtained through standard blue bee progression and standard hatching.',
-  'Baby Bee': 'Unlocked through standard legendary bee progression and normal hive growth.',
-  'Carpenter Bee': 'Obtained through normal progression and bee hatching.',
-  'Demon Bee': 'Unlocked through the red progression path and deeper hive progression.',
-  'Diamond Bee': 'Obtained through regular blue hive progression and standard hatching.',
-  'Lion Bee': 'Unlocked through the legendary bee progression track and later hive progression.',
-  'Music Bee': 'Obtained through standard progression and legendary bee hatching.',
-  'Ninja Bee': 'Unlocked through the blue bee progression track and later hive advancement.',
-  'Shy Bee': 'Obtained through the normal red bee progression cycle and standard hatching.',
-  'Buoyant Bee': 'Unlocked in later progression as a mythic bee and requires regular hive advancement.',
-  'Fuzzy Bee': 'Obtained through the mythic bee progression track and higher-tier hive progression.',
-  'Precise Bee': 'Unlocked through later progression and is tied to mythic bee advancement.',
-  'Spicy Bee': 'Obtained through the mythic red bee progression track and higher-tier hive growth.',
-  'Tadpole Bee': 'Unlocked through the mythic blue bee progression path.',
-  'Vector Bee': 'Obtained through advanced mythic progression and higher-tier hive unlocking.',
-  'Bear Bee': 'Obtained through special event progression associated with the Bear Bee event system.',
-  'Cobalt Bee': 'Unlocked through the event bee system and blue event progression.',
-  'Crimson Bee': 'Unlocked through the event bee system and red event progression.',
-  'Digital Bee': 'Obtained through the Digital event progression and special event conditions.',
-  'Festive Bee': 'Unlocked through festive or seasonal event progression.',
-  'Gummy Bee': 'Obtained through the event bee system and event progression.',
-  'Photon Bee': 'Unlocked through event progression and the Photon Bee event route.',
-  'Puppy Bee': 'Obtained through the event bee system and its seasonal or special event unlock.',
-  'Tabby Bee': 'Unlocked through the event bee progression and the Tabby Bee relationship/event system.',
-  'Vicious Bee': 'Obtained through the event bee system and event challenge progression.',
-  'Windy Bee': 'Unlocked through the event bee system and the Windy Bee event progression cycle.',
+  'Bear Bee': 'Obtained through the Bear Bee event. Check the BSS Wiki for current event ticket cost and availability.',
+  'Cobalt Bee': 'Obtained through event bee progression. Check the BSS Wiki for current ticket cost.',
+  'Crimson Bee': 'Obtained through event bee progression. Check the BSS Wiki for current ticket cost.',
+  'Digital Bee': 'Obtained through event bee progression. Check the BSS Wiki for current ticket cost.',
+  'Festive Bee': 'Obtained through event bee progression. Check the BSS Wiki for current ticket cost.',
+  'Gummy Bee': 'Obtained through the Gummy Bee event. Check the BSS Wiki for current event ticket cost and availability.',
+  'Photon Bee': 'Obtained through event bee progression. Check the BSS Wiki for current ticket cost.',
+  'Puppy Bee': 'Obtained through event bee progression. Check the BSS Wiki for current ticket cost.',
+  'Tabby Bee': 'Obtained through event bee progression. Check the BSS Wiki for current ticket cost.',
+  'Vicious Bee': 'Obtained through the Vicious Bee event. Check the BSS Wiki for current event ticket cost and availability.',
+  'Windy Bee': 'Obtained through the Windy Bee event. Check the BSS Wiki for current event ticket cost and availability.',
 };
 
 const giftedAbilities = {
@@ -198,7 +166,7 @@ Object.entries(beesByRarity).forEach(([rarity, bees]) => bees.forEach((beeData) 
   beeData.tokens = tokenDetails[beeData.name] || ['Ability token information is maintained on the BSS Wiki.'];
   beeData.giftedBonus = giftedBonuses[beeData.name] || 'Gifted bonus information is maintained on the BSS Wiki.';
   beeData.ability = abilityDetails[beeData.name] || beeData.description;
-  beeData.obtainment = obtainmentDetails[beeData.name] || 'This bee is obtained through normal progression and is discussed on the BSS Wiki.';
+  beeData.obtainment = obtainmentDetails[beeData.name] || null;
   beeData.giftedAbility = giftedAbilities[beeData.name] || 'Gifted ability information is maintained on the BSS Wiki.';
   beeData.giftedSpecialAbility = giftedSpecialAbilities[beeData.name] || null;
   beeData.wikiUrl = `https://bee-swarm-simulator.fandom.com/wiki/${beeData.name.replace(/ /g, '_')}`;
