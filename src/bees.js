@@ -134,17 +134,17 @@ const abilityDetails = {
 };
 
 const obtainmentDetails = {
-  'Bear Bee': 'Obtained through the Bear Bee event. Check the BSS Wiki for current event ticket cost and availability.',
-  'Cobalt Bee': 'Obtained through event bee progression. Check the BSS Wiki for current ticket cost.',
-  'Crimson Bee': 'Obtained through event bee progression. Check the BSS Wiki for current ticket cost.',
+  'Bear Bee': 'Costs 800 Robux. Not purchased with tickets.',
+  'Cobalt Bee': 'Obtained for 250 tickets during the Cobalt Bee event.',
+  'Crimson Bee': 'Obtained for 250 tickets during the Crimson Bee event.',
   'Digital Bee': 'Obtained through event bee progression. Check the BSS Wiki for current ticket cost.',
-  'Festive Bee': 'Obtained through event bee progression. Check the BSS Wiki for current ticket cost.',
-  'Gummy Bee': 'Obtained through the Gummy Bee event. Check the BSS Wiki for current event ticket cost and availability.',
-  'Photon Bee': 'Obtained through event bee progression. Check the BSS Wiki for current ticket cost.',
-  'Puppy Bee': 'Obtained through event bee progression. Check the BSS Wiki for current ticket cost.',
-  'Tabby Bee': 'Obtained through event bee progression. Check the BSS Wiki for current ticket cost.',
-  'Vicious Bee': 'Obtained through the Vicious Bee event. Check the BSS Wiki for current event ticket cost and availability.',
-  'Windy Bee': 'Obtained through the Windy Bee event. Check the BSS Wiki for current event ticket cost and availability.',
+  'Festive Bee': 'Obtained for 500 tickets during the Festive Bee event.',
+  'Gummy Bee': 'Purchased with 2,500 gumdrops. Alternatively, you can use tickets to buy gumdrops, which costs approximately 834 tickets if starting from zero.',
+  'Photon Bee': 'Obtained for 500 tickets during the Photon Bee event.',
+  'Puppy Bee': 'Obtained for 500 tickets during the Puppy Bee event.',
+  'Tabby Bee': 'Obtained for 500 tickets during the Tabby Bee event.',
+  'Vicious Bee': 'Purchased with 250 stingers.',
+  'Windy Bee': 'Obtained by donating a Spirit Petal to the Wind Shrine and turning in cloud vials.',
 };
 
 const giftedAbilities = {
