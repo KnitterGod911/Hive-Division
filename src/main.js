@@ -4,6 +4,7 @@ import { enemies, enemyBySlug } from './enemies.js';
 import { macros } from './macros.js';
 import { header, footer, refreshIcons, searchBar, button, categoryCard, progressionCard, beeRarityCard, beeCard, enemyCard, icon, macroCard, mediaMarkup, demoMediaMarkup } from './components.js';
 import { CustomCursor } from './CustomCursor.js';
+import { createSettingsPanel, toggleSettingsPanel, loadCursorSettings } from './settings.js';
 import './styles.css';
 
 const app = document.querySelector('#app');
@@ -247,7 +248,31 @@ function bindGlobalInteractions() {
 
 shell(detailMacro ? macroDetail(detailMacro) : detailBee ? beeDetailPage(detailBee) : detailEnemy ? enemyDetailPage(detailEnemy) : path === '/macros' || path.startsWith('/macros/') ? macroDirectory() : path === '/explore' ? explorePage() : path === '/progression' ? progressionPage() : path === '/bees' ? beesPage() : path === '/mobs' || path === '/enemies' ? enemiesPage() : beeRaritySlug ? beeRarityPage(beeRaritySlug) : path === '/about' ? aboutPage() : homePage());
 if (detailMacro) document.querySelector('.detail-content')?.insertAdjacentHTML('beforeend', detailSupplement(detailMacro));
-CustomCursor();
+
+// Initialize cursor and settings
+const cursorSettings = loadCursorSettings();
+if (cursorSettings.enabled) {
+  CustomCursor();
+}
+
+// Create and initialize settings panel
+const settingsPanel = createSettingsPanel();
+document.body.appendChild(settingsPanel);
+
+// Add settings button to header
+setTimeout(() => {
+  const headerActions = document.querySelector('.header-actions');
+  if (headerActions) {
+    const settingsBtn = document.createElement('button');
+    settingsBtn.className = 'icon-button cursor-settings-btn';
+    settingsBtn.type = 'button';
+    settingsBtn.setAttribute('aria-label', 'Cursor settings');
+    settingsBtn.setAttribute('title', 'Cursor Settings');
+    settingsBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m3.08 3.08l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m3.08-3.08l4.24-4.24M19.78 19.78l-4.24-4.24m-3.08-3.08l-4.24-4.24"></path></svg>`;
+    settingsBtn.addEventListener('click', toggleSettingsPanel);
+    headerActions.insertBefore(settingsBtn, headerActions.firstChild);
+  }
+}, 0);
 
 if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
   window.addEventListener('load', () => {
